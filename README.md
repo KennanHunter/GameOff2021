@@ -1,1 +1,3 @@
-# GameOff2021
+# Github Game Off Game Jam 2021
+
+Good and Nice group github game off game jam submission.

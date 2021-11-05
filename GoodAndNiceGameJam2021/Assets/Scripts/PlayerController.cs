@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         // Physics Calculations
         Move();
 
-        // Player faces direction of movement
+        // Player faces direction of movement - not functional yet
         //if(movementInput != Vector2.zero && movementInput.magnitude > 0.5)
         //{
         //    gameObject.transform.forward = new Vector3(movementInput.x, movementInput.y, 90);

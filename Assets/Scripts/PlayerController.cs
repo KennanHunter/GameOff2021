@@ -8,9 +8,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float playerSpeed = 2.0f;
+    [SerializeField]
+    private float rotateSpeed = 720.0f;
 
     private PlayerInput playerInput;
-    //private InputAction moveAction;
     private Rigidbody2D rb;
     private Vector2 movementInput = Vector2.zero;
 
@@ -18,7 +19,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
-        //moveAction = playerInput.actions["Movement"];
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Processing Inputs
+        Vector3 rotate = new Vector3(movementInput.x, 0, movementInput.y);
     }
 
     private void FixedUpdate()
@@ -41,10 +42,11 @@ public class PlayerController : MonoBehaviour
         // Physics Calculations
         Move();
 
-        // Player faces direction of movement - not functional yet
-        //if(movementInput != Vector2.zero && movementInput.magnitude > 0.5)
-        //{
-        //    gameObject.transform.forward = new Vector3(movementInput.x, movementInput.y, 90);
-        //}
+        // Player faces direction of movement
+        if(movementInput != Vector2.zero && movementInput.magnitude > 0.5)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementInput);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+        }
     }
 }

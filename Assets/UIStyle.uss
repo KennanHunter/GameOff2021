@@ -1,0 +1,77 @@
+.Start-Style {
+    width: 200px;
+    height: 100px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgba(88, 88, 88, 0);
+    background-image: url('/Assets/UI Assets/Start2.png');
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.Start-Style:hover {
+    width: 200px;
+    height: 100px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgba(88, 88, 88, 0);
+    background-image: url('/Assets/UI Assets/Start2.png');
+    -unity-background-image-tint-color: rgba(195, 195, 195, 255);
+}
+
+.Start-Style:active {
+    width: 210px;
+    height: 105px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgba(88, 88, 88, 0);
+    background-image: url('/Assets/UI Assets/Start2.png');
+    -unity-background-image-tint-color: rgb(195, 195, 195);
+}
+
+.Short-Style {
+    background-color: rgba(88, 88, 88, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-image: url('/Assets/UI Assets/Options1.png');
+    width: 200px;
+    height: 73px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.Short-Style:hover {
+    background-color: rgba(88, 88, 88, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-image: url('/Assets/UI Assets/Options1.png');
+    width: 200px;
+    height: 73px;
+    -unity-background-image-tint-color: rgba(195, 195, 195, 255);
+}
+
+.Short-Style:active {
+    background-color: rgba(88, 88, 88, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-image: url('/Assets/UI Assets/Options1.png');
+    width: 210px;
+    height: 78px;
+    -unity-background-image-tint-color: rgb(195, 195, 195);
+}

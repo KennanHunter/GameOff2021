@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
 public class Class1 : MonoBehaviour

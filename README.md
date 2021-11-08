@@ -1,5 +1,6 @@
-# Github Game Off Game Jam 2021
+<center>
+    <img src="Assets/UI Assets/Title.png">
+    <h1>Gaurding The Garden</h1>
+</center>
 
-Good and Nice group github game off game jam submission.
-Game Jelly Jam man man jam jelly jam
-Teststettststtstttt
+Gaurding the Garden is currently under development for the Github Game Off Game Jam 2021

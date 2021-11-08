@@ -1,7 +1,7 @@
-<center>
+<div align="center">
     <img src="Assets/UI Assets/Title.png">
     <h1>Gaurding The Garden</h1>
-</center>
+</div align="center">
 
 [![Made with Unity](https://img.shields.io/badge/Made%20with-Unity-57b9d3.svg?style=for-the-badge&logo=unity)](https://unity3d.com)
 

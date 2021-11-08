@@ -355,11 +355,11 @@ MonoBehaviour:
   dialogue:
     name: Itsy Bitsy
     sentences:
-    - uwu
-    - UwU
+    - ...
+    - o.O
     - OWO
     - OOWOO
-    - /\/\/OOWOO\/\/\
+    - "l\u2572l\u2572OOWOO\u2571l\u2571l"
 --- !u!114 &337535080
 MonoBehaviour:
   m_ObjectHideFlags: 0

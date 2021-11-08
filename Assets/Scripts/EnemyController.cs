@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    //[SerializeField]
-    //private float moveSpeed = 10.0f;
+    [SerializeField]
+    private float moveSpeed = 10.0f;
     [SerializeField]
     private float health = 100f;
     [SerializeField]
     private float maxHealth = 100f;
 
-    private Rigidbody2D rb; 
+    private Rigidbody2D rb;
+
+    private Transform target;
+
+
 
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        // Find player's position (Transform)
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     public void TakeDamage(float damage)
@@ -47,7 +54,9 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        //rb.AddForce()
+        // Find and move towards Target
+        Vector2 moveVector = (target.position - transform.position).normalized;
+        //rb.AddForce(moveVector.normalized * moveSpeed * Time.deltaTime);
+        rb.velocity = new Vector2(moveVector.x * moveSpeed, moveVector.y * moveSpeed);
     }
 }

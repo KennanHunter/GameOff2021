@@ -180,7 +180,7 @@ MonoBehaviour:
     m_Bits: 64
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   attackDamage: 5
   timeBetweenAttacks: 2
   spikeSightRange: 5

@@ -9,20 +9,24 @@ public class EnemySpider : MonoBehaviour
     private Vector3 targetDirection;
 
     [SerializeField]
-    public float timeBetweenAttacks = 5.0f;
+    public float timeBetweenAttacks = 8.0f;
     private float attackTimer = 0f;
 
     [SerializeField]
     private GameObject ropeObject;
 
     [SerializeField]
-    private float propelForce = 5;
+    private float propelForce = 20.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         // Find player's position (Transform)
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        // Make Spider not collide with web, and web not collide with web
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("SpiderWebLayer"), LayerMask.NameToLayer("Enemy"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("SpiderWebLayer"), LayerMask.NameToLayer("SpiderWebLayer"));
     }
 
     void ThrowWeb()
@@ -31,34 +35,55 @@ public class EnemySpider : MonoBehaviour
         {
             return;
         }
-
-        // Spawn web string
-        GameObject webRope = Instantiate(ropeObject);
-        Rope webRopeScript = webRope.GetComponent<Rope>();
-        Rigidbody2D lastSegmentRb = webRopeScript.lastSegment.GetComponent<Rigidbody2D>();
-
-        // Attach one end to spider
-        webRope.transform.position = gameObject.transform.position;
-
-        // Add force to the last segment
-        if(lastSegmentRb)
-        {
-            lastSegmentRb.AddForce(targetDirection * propelForce, ForceMode2D.Impulse);
-        }
-        else
-        {
-            Debug.Log("Cant add force to null: " + lastSegmentRb);
-        }
-
+        
         // Reset Attack Timer
         attackTimer = timeBetweenAttacks;
+
+        // Spawn web string and set Spider as parent
+        GameObject webRope = Instantiate(ropeObject, new Vector3(transform.position.x, 
+            transform.position.y, transform.position.z), Quaternion.identity);
+        webRope.transform.parent = gameObject.transform;
+
+        // Get the Rope script object of the webRope GameObject
+        // This allows us to access the public member variables/functions
+        // lastSegment is the Poison Ball's RigidBody
+        Rope webRopeRopeObject = webRope.GetComponent<Rope>();
+
+        // Web should not collide with spider (This currently seems to do nothing)
+        Physics2D.IgnoreCollision(webRopeRopeObject.prefabRopeSegment.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(webRopeRopeObject.poisonBall.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+
+        // Attach one end to spider - set the hook's parent as the Spider
+        webRopeRopeObject.hook.transform.parent = gameObject.transform;
+
+        // Set the hook's hingejoint's anchor to the Spider's position
+        // FYI: This does not work! Do not do this! Doing this causes the webs to float around, half-heartedly trying to follow the spider
+        //webRopeRopeObject.hook.GetComponent<HingeJoint2D>().anchor = gameObject.transform.position;
+
+        // Set the hook's connected body as the Spider's rigidbody (This works great *chef's kiss*)
+        webRopeRopeObject.hook.GetComponent<HingeJoint2D>().connectedBody = gameObject.GetComponent<Rigidbody2D>();
+        webRopeRopeObject.hook.transform.position = gameObject.transform.position;
+
+        // Apply force onto the last segment (poison ball) towards the target
+        Debug.Log("TargetDirection: " + targetDirection + ". Applying velocity: " + new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce) + ". Last Segment:" + webRopeRopeObject.GetLastSegment());
+        
+        //webRopeRopeObject.GetLastSegment().velocity = new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce);
+        Rigidbody2D poisonBallRb = webRopeRopeObject.lastSegment.GetComponent<Rigidbody2D>();
+        //Rigidbody2D poisonBallRb = webRopeRopeObject.GetLastSegment().GetComponent<Rigidbody2D>();
+        //poisonBallRb.velocity = new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce);
+        poisonBallRb.AddForce(new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce), ForceMode2D.Impulse);
+        // TODO: FIGURE OUT HOW TO APPLY FORCE TO THIS!!! 
+        // I HAVE THE DIRECTION AND FORCE, AND I KNOW THE BODY TO APPLY FORCE TO
+        // BUT NO FORCE IS APPLIED!!!
+        
+        Debug.Log("LastSegment:" + webRopeRopeObject.GetLastSegment() + ". LastSegment Rb: " + poisonBallRb + " current velocity: " + webRopeRopeObject.GetLastSegment().velocity);
     }
 
     // Update is called once per frame
     void Update()
     {
         targetDistance = Vector3.Distance(target.transform.position, gameObject.transform.position);
-        targetDirection = (gameObject.transform.position - target.transform.position).normalized;
+        targetDirection = (target.transform.position - gameObject.transform.position).normalized;
 
         if (targetDistance < 5 )
         {

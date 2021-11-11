@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4189854399102445795}
   - component: {fileID: 4189854399102445793}
   - component: {fileID: 4189854399102445794}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 4.01, y: 1.01}
+  m_ConnectedAnchor: {x: 0, y: 0}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4189854400658354041}
   - component: {fileID: 4189854400658354040}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpiderWebRopeObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,3 +124,5 @@ MonoBehaviour:
   hook: {fileID: 4189854399102445793}
   prefabRopeSegment: {fileID: 669845450591394563, guid: 534150ca04040cd47b02b817b84f2f21, type: 3}
   numLinks: 5
+  poisonBall: {fileID: 3081832620450426761, guid: 8519bba15f9272849b7695e8898127c3, type: 3}
+  lastSegment: {fileID: 3081832620450426772, guid: 8519bba15f9272849b7695e8898127c3, type: 3}

@@ -18,6 +18,10 @@ public class EnemySpider : MonoBehaviour
     [SerializeField]
     private float propelForce = 20.0f;
 
+    [SerializeField]
+    public int maxWebStrings = 6;
+    private int numWebStrings = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +39,15 @@ public class EnemySpider : MonoBehaviour
         {
             return;
         }
+        if(numWebStrings >= maxWebStrings)
+        {
+            return;
+        }
         
         // Reset Attack Timer
         attackTimer = timeBetweenAttacks;
+
+        ++numWebStrings;
 
         // Spawn web string and set Spider as parent
         GameObject webRope = Instantiate(ropeObject, new Vector3(transform.position.x, 
@@ -65,7 +75,7 @@ public class EnemySpider : MonoBehaviour
         webRopeRopeObject.hook.transform.position = gameObject.transform.position;
 
         // Apply force onto the last segment (poison ball) towards the target
-        Debug.Log("TargetDirection: " + targetDirection + ". Applying velocity: " + new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce) + ". Last Segment:" + webRopeRopeObject.GetLastSegment());
+        //Debug.Log("TargetDirection: " + targetDirection + ". Applying velocity: " + new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce) + ". Last Segment:" + webRopeRopeObject.GetLastSegment());
         
         //webRopeRopeObject.GetLastSegment().velocity = new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce);
         Rigidbody2D poisonBallRb = webRopeRopeObject.lastSegment.GetComponent<Rigidbody2D>();
@@ -76,7 +86,7 @@ public class EnemySpider : MonoBehaviour
         // I HAVE THE DIRECTION AND FORCE, AND I KNOW THE BODY TO APPLY FORCE TO
         // BUT NO FORCE IS APPLIED!!!
         
-        Debug.Log("LastSegment:" + webRopeRopeObject.GetLastSegment() + ". LastSegment Rb: " + poisonBallRb + " current velocity: " + webRopeRopeObject.GetLastSegment().velocity);
+        //Debug.Log("LastSegment:" + webRopeRopeObject.GetLastSegment() + ". LastSegment Rb: " + poisonBallRb + " current velocity: " + webRopeRopeObject.GetLastSegment().velocity);
     }
 
     // Update is called once per frame

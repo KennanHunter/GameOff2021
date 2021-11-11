@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3081832620450426773}
   - component: {fileID: 453991326748699285}
   - component: {fileID: 3081832620450426759}
+  - component: {fileID: -4415744571469379315}
   m_Layer: 10
   m_Name: SpiderPoisonBall
   m_TagString: Untagged
@@ -161,3 +162,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4415744571469379315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3081832620450426761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8067afc909c0bd84a8b9328ba4b5bc59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1.5
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  attackDamage: 5
+  timeBetweenAttacks: 2

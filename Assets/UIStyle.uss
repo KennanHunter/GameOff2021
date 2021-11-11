@@ -26,7 +26,7 @@
 }
 
 .Start-Style:active {
-    width: 210px;
+    width: 220px;
     height: 105px;
     border-left-width: 0;
     border-right-width: 0;
@@ -46,10 +46,10 @@
     background-image: url('/Assets/UI Assets/Options1.png');
     width: 200px;
     height: 73px;
-    margin-left: 4px;
-    margin-right: 4px;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-left: 13px;
+    margin-right: 13px;
+    margin-top: 13px;
+    margin-bottom: 13px;
 }
 
 .Short-Style:hover {
@@ -104,7 +104,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     background-image: url('/Assets/UI Assets/Back.png');
-    -unity-background-image-tint-color: rgba(195, 195, 195, 255);
+    -unity-background-image-tint-color: rgb(195, 195, 195);
 }
 
 .Back-Style:active {

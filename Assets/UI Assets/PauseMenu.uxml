@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="/Assets/UIStyle.uss" />
+    <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; -unity-background-image-tint-color: rgba(255, 255, 255, 255); background-color: rgba(0, 0, 0, 0.45);">
+        <ui:Button display-tooltip-when-elided="true" name="Resume-Button" class="Start-Style" style="background-image: url(&apos;/Assets/UI Assets/Resume_button.png&apos;); width: 280px; height: 120px;" />
+        <ui:Button display-tooltip-when-elided="true" name="Menu-Button" class="Short-Style" style="background-image: url(&apos;/Assets/UI Assets/Menu_button.png&apos;);" />
+        <ui:Button display-tooltip-when-elided="true" name="Quit-Button" class="Short-Style" style="align-items: center; justify-content: center; background-image: url(&apos;/Assets/UI Assets/quit_button.png&apos;);" />
+    </ui:VisualElement>
+</ui:UXML>

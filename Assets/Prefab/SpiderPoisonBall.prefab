@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 453991326748699285}
   - component: {fileID: 3081832620450426759}
   - component: {fileID: -4415744571469379315}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: SpiderPoisonBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,9 +174,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8067afc909c0bd84a8b9328ba4b5bc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 1.5
+  attackRange: 1.1
   playerLayers:
     serializedVersion: 2
     m_Bits: 64
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
   attackDamage: 5
   timeBetweenAttacks: 2
+  spikeSightRange: 5

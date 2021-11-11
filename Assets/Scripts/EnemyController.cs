@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour
     private float health = 100f;
     [SerializeField]
     private float maxHealth = 100f;
+    [SerializeField]
+    public float sightDistance = 8.0f;
 
     private Rigidbody2D rb;
 
@@ -55,8 +57,12 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         // Find and move towards Target
-        Vector2 moveVector = (target.position - transform.position).normalized;
-        //rb.AddForce(moveVector.normalized * moveSpeed * Time.deltaTime);
-        rb.velocity = new Vector2(moveVector.x * moveSpeed, moveVector.y * moveSpeed);
+        Vector2 moveVector = (target.position - transform.position);
+        if(moveVector.magnitude <= sightDistance)
+        {
+            moveVector = moveVector.normalized;
+            //rb.AddForce(moveVector.normalized * moveSpeed * Time.deltaTime);
+            rb.velocity = new Vector2(moveVector.x * moveSpeed, moveVector.y * moveSpeed);
+        }
     }
 }

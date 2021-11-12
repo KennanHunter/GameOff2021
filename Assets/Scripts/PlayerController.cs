@@ -27,9 +27,9 @@ public class PlayerController : MonoBehaviour
     private float dashInvincibleCooldown = 0.5f;
     private bool invincible = false;
 
-    private Color colorLowHealth = new Color(255, 51, 51, 1);
-    private Color colorMedHealth = new Color(255, 102, 102, 1);
-    private Color colorHighHealth = new Color(255, 204, 204, 1);
+    //private Color colorLowHealth = new Color(255, 51, 51, 1);
+    //private Color colorMedHealth = new Color(255, 102, 102, 1);
+    //private Color colorHighHealth = new Color(255, 204, 204, 1);
 
     private void Start()
     {
@@ -96,15 +96,15 @@ public class PlayerController : MonoBehaviour
         // Update color of Player based on remaining health
         if (health <= maxHealth * 0.75)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = colorLowHealth;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         if (health <= maxHealth * 0.50)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = colorMedHealth;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
         }
         if (health <= maxHealth * 0.25)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = colorHighHealth;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 

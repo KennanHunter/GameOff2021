@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   rotateSpeed: 720
+  dashForce: 10
 --- !u!114 &3579863106871799577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +168,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -232,6 +233,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7d048a1c-44ae-4f01-83d4-f9ff07f9dc2e
     m_ActionName: Player/Attack[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3579863106871799554}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 573c29ab-d29e-4c00-889f-2c35fd11e00c
+    m_ActionName: Player/Dash[/Keyboard/k]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

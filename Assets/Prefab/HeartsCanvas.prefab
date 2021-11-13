@@ -644,12 +644,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 368357790306650461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1104c89c3d4cf5641b30177dddda36fe, type: 3}
+  m_Script: {fileID: 11500000, guid: a45ec1352c29a2b4ba150b1a809c923c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
-  health: 0
-  numofHearts: 0
+  health: 10
+  numofHearts: 10
   hearts:
   - {fileID: 368357790369654268}
   - {fileID: 368357789012364002}
@@ -663,7 +663,7 @@ MonoBehaviour:
   - {fileID: 368357788571660647}
   fullHeart: {fileID: 21300000, guid: dc030b1fd747d45428a4210050dcbf8d, type: 3}
   emptyHeart: {fileID: 21300000, guid: 7a18778ab09d3be4bb6a83115945df66, type: 3}
-  halfHeart: {fileID: 21300000, guid: 0093c7c9ee4759945bc9805eb4ff2e36, type: 3}
+  halfHeart: {fileID: 21300000, guid: 4a505a16934640443b975ad583c39385, type: 3}
 --- !u!1 &368357790369654267
 GameObject:
   m_ObjectHideFlags: 0

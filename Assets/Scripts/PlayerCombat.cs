@@ -37,16 +37,16 @@ public class PlayerCombat : MonoBehaviour
         // Apply damage to enemies
         foreach(Collider2D enemy in hitEnemies)
         {
+            // Apply damage to Enemy Controllers
+            if(enemy.GetComponent<EnemyController>())
+            {
+                enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+            }
             // Apply force to Rigidbodies
             if(enemy.GetComponent<Rigidbody2D>())
             {
                 Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
                 enemyRb.AddForce(transform.up * attackForce, ForceMode2D.Impulse);
-            }
-            // Apply damage to Enemy Controllers
-            if(enemy.GetComponent<EnemyController>())
-            {
-                enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
             }
             attackTimer = timeBetweenAttacks;
         }

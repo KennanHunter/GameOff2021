@@ -45,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void LoadMenu()
     {
+        Time.timeScale = 1f;  // Reset time scale before leaving the level
         SceneManager.LoadScene("MainMenu");
     }
     public void QuitGame()

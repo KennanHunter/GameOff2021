@@ -10,16 +10,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private string mainLevelName;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void Play()
     {
         SceneManager.LoadScene(mainLevelName);

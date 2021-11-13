@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4438018783083855511}
   - component: {fileID: 4438018783083855510}
   - component: {fileID: 4438018783083855509}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Croissant
   m_TagString: Untagged
   m_Icon: {fileID: 0}

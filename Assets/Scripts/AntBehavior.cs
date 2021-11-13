@@ -51,62 +51,35 @@ public class AntBehavior : MonoBehaviour
 
     private void CalculateDesiredPosition()
     {
-        Collider2D[] otherEnemyUnits = Physics2D.OverlapCircleAll(gameObject.transform.position, antSight, enemyLayers);
-        if(otherEnemyUnits.Length > 0)  // If we found any enemies
-        {
-            Vector2 vectorToClosestEnemy = otherEnemyUnits[0].transform.position - gameObject.transform.position;
-            foreach(Collider2D enemy in otherEnemyUnits)
-            {
-                float distanceToEnemy = (enemy.transform.position - gameObject.transform.position).magnitude;
-                if(distanceToEnemy < vectorToClosestEnemy.magnitude)
-                {
-                    vectorToClosestEnemy = enemy.transform.position - gameObject.transform.position;
-                    Debug.Log("enemy " + enemy + " is closer");
-                }
-            }
-            target.position += (Vector3)vectorToClosestEnemy * avoidEnemyStrength * Time.deltaTime * -1;
-            Debug.Log(gameObject + " is avoiding in this direction: " +
-                (Vector3)vectorToClosestEnemy * avoidEnemyStrength * Time.deltaTime * -1);
-        }
+        Vector3 enemyVector = FindVector3TowardsClosestCollider(gameObject.transform.position, antSight, enemyLayers);
+        Vector3 playerVector = FindVector3TowardsClosestCollider(gameObject.transform.position, antSight, playerLayers);
+        Vector3 foodVector = FindVector3TowardsClosestCollider(gameObject.transform.position, antSight, foodLayers);
 
-        Collider2D[] otherPlayerUnits = Physics2D.OverlapCircleAll(gameObject.transform.position, antSight, playerLayers);
-        if (otherPlayerUnits.Length > 0)  // If we found any players
-        {
-            Vector2 vectorToClosestPlayer = otherPlayerUnits[0].transform.position - gameObject.transform.position;
-            foreach (Collider2D player in otherPlayerUnits)
-            {
-                float distanceToEnemy = (enemy.transform.position - gameObject.transform.position).magnitude;
-                if (distanceToEnemy < vectorToClosestEnemy.magnitude)
-                {
-                    vectorToClosestEnemy = enemy.transform.position - gameObject.transform.position;
-                    Debug.Log("enemy " + enemy + " is closer");
-                }
-            }
-            target.position += (Vector3)vectorToClosestEnemy * avoidEnemyStrength * Time.deltaTime * -1;
-            Debug.Log(gameObject + " is avoiding in this direction: " +
-                (Vector3)vectorToClosestEnemy * avoidEnemyStrength * Time.deltaTime * -1);
-        }
+        target.position += enemyVector * avoidEnemyStrength * Time.deltaTime * -1;
+        target.position += playerVector * desirePlayersStrength * Time.deltaTime;
+        target.position += foodVector * desireFoodStrength * Time.deltaTime;
     }
 
-    public Vector3 FindVector3TowardsCollider()
+    public Vector3 FindVector3TowardsClosestCollider(Vector3 scanOriginPosition, float sightDistance, LayerMask layerToLookFor)
     {
-        Collider2D[] otherEnemyUnits = Physics2D.OverlapCircleAll(gameObject.transform.position, antSight, enemyLayers);
-        if (otherEnemyUnits.Length > 0)  // If we found any enemies
+        Collider2D[] foundColliderList = Physics2D.OverlapCircleAll(scanOriginPosition, sightDistance, layerToLookFor);
+        if (foundColliderList.Length > 0)  // If we found any enemies
         {
-            Vector2 vectorToClosestEnemy = otherEnemyUnits[0].transform.position - gameObject.transform.position;
-            foreach (Collider2D enemy in otherEnemyUnits)
+            Vector2 vectorToClosest = foundColliderList[0].transform.position - scanOriginPosition;
+            foreach (Collider2D found in foundColliderList)
             {
-                float distanceToEnemy = (enemy.transform.position - gameObject.transform.position).magnitude;
-                if (distanceToEnemy < vectorToClosestEnemy.magnitude)
+                float distanceToFound = (found.transform.position - scanOriginPosition).magnitude;
+                if (distanceToFound < vectorToClosest.magnitude)
                 {
-                    vectorToClosestEnemy = enemy.transform.position - gameObject.transform.position;
-                    Debug.Log("enemy " + enemy + " is closer");
+                    vectorToClosest = found.transform.position - scanOriginPosition;
+                    Debug.Log("Found Object " + found + " is closer. VectorTowards: " + vectorToClosest);
                 }
             }
-            target.position += (Vector3)vectorToClosestEnemy * avoidEnemyStrength * Time.deltaTime * -1;
-            Debug.Log(gameObject + " is avoiding in this direction: " +
-                (Vector3)vectorToClosestEnemy * avoidEnemyStrength * Time.deltaTime * -1);
+
+            return vectorToClosest;
         }
+
+        return Vector3.zero;  // Return zero vector if no colliders found
     }
 
     // Update is called once per frame

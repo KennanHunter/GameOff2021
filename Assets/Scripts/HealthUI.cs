@@ -23,7 +23,7 @@ public class HealthUI : MonoBehaviour
     void Update()
     {
         health = playerController.health *0.1f;
-        Debug.Log("healthUI: " + health);
+      
         int j = 0;
         for (int i = 0; i < hearts.Length; i++)
         {

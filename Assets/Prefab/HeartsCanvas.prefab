@@ -663,7 +663,7 @@ MonoBehaviour:
   - {fileID: 368357788571660647}
   fullHeart: {fileID: 21300000, guid: dc030b1fd747d45428a4210050dcbf8d, type: 3}
   emptyHeart: {fileID: 21300000, guid: 7a18778ab09d3be4bb6a83115945df66, type: 3}
-  halfHeart: {fileID: 0}
+  halfHeart: {fileID: 21300000, guid: 0093c7c9ee4759945bc9805eb4ff2e36, type: 3}
 --- !u!1 &368357790369654267
 GameObject:
   m_ObjectHideFlags: 0

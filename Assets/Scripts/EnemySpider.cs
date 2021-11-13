@@ -16,9 +16,6 @@ public class EnemySpider : MonoBehaviour
     private GameObject ropeObject;
 
     [SerializeField]
-    private float propelForce = 20.0f;
-
-    [SerializeField]
     public int maxWebStrings = 6;
     private int numWebStrings = 0;
 
@@ -73,20 +70,6 @@ public class EnemySpider : MonoBehaviour
         // Set the hook's connected body as the Spider's rigidbody (This works great *chef's kiss*)
         webRopeRopeObject.hook.GetComponent<HingeJoint2D>().connectedBody = gameObject.GetComponent<Rigidbody2D>();
         webRopeRopeObject.hook.transform.position = gameObject.transform.position;
-
-        // Apply force onto the last segment (poison ball) towards the target
-        //Debug.Log("TargetDirection: " + targetDirection + ". Applying velocity: " + new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce) + ". Last Segment:" + webRopeRopeObject.GetLastSegment());
-        
-        //webRopeRopeObject.GetLastSegment().velocity = new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce);
-        Rigidbody2D poisonBallRb = webRopeRopeObject.lastSegment.GetComponent<Rigidbody2D>();
-        //Rigidbody2D poisonBallRb = webRopeRopeObject.GetLastSegment().GetComponent<Rigidbody2D>();
-        //poisonBallRb.velocity = new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce);
-        poisonBallRb.AddForce(new Vector2(targetDirection.x * propelForce, targetDirection.y * propelForce), ForceMode2D.Impulse);
-        // TODO: FIGURE OUT HOW TO APPLY FORCE TO THIS!!! 
-        // I HAVE THE DIRECTION AND FORCE, AND I KNOW THE BODY TO APPLY FORCE TO
-        // BUT NO FORCE IS APPLIED!!!
-        
-        //Debug.Log("LastSegment:" + webRopeRopeObject.GetLastSegment() + ". LastSegment Rb: " + poisonBallRb + " current velocity: " + webRopeRopeObject.GetLastSegment().velocity);
     }
 
     // Update is called once per frame

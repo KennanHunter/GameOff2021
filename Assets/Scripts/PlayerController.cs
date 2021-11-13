@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float dashForce = 10.0f;
 
-    private float maxHealth = 100f;
-    private float health = 100f;
+    public float maxHealth = 100f;
+    public float health = 100f;
 
     private PlayerInput playerInput;
     private Rigidbody2D rb;

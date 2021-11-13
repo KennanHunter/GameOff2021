@@ -136,6 +136,8 @@ MonoBehaviour:
   playerSpeed: 5
   rotateSpeed: 720
   dashForce: 10
+  maxHealth: 100
+  health: 100
 --- !u!114 &3579863106871799577
 MonoBehaviour:
   m_ObjectHideFlags: 0

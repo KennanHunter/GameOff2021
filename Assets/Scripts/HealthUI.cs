@@ -7,12 +7,13 @@ public class HealthUI : MonoBehaviour
 {
     [SerializeField]
     private PlayerController playerController;
-    public int health;
+    public float health;
     public int numofHearts;
 
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    public Sprite halfHeart;
     private void Start()
     {
         playerController = GetComponentInParent<PlayerController>();
@@ -21,18 +22,26 @@ public class HealthUI : MonoBehaviour
     }
     void Update()
     {
-        health = (int)(playerController.health *0.1f);
+        health = playerController.health *0.1f;
+        Debug.Log("healthUI: " + health);
+        int j = 0;
         for (int i = 0; i < hearts.Length; i++)
         {
-
+            //this determines the health level to show
             if(i < health)
             {
+                j++; 
                 hearts[i].sprite = fullHeart;
             }else
             {
                 hearts[i].sprite = emptyHeart;
             }
-            if (i < numofHearts)
+           
+         
+
+
+           //This determines the number of heart containers
+           if (i < numofHearts)
             {
                 hearts[i].enabled = true;
             }
@@ -42,5 +51,11 @@ public class HealthUI : MonoBehaviour
             }
 
         }
+        //this determines if its a half heart or not
+        if (health % 1 == 0.5)
+        {
+            hearts[j-1].sprite = halfHeart;
+        }
     }
+
 }

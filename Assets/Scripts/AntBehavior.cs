@@ -9,6 +9,8 @@ public class AntBehavior : MonoBehaviour
 
     public Transform target;  // What we will move towards
     private Rigidbody2D rb;  // Our rigidbody to apply force on
+    Vector3 desiredDirection;  // Direction to target
+    Quaternion desiredRotation;  // desired rotation
 
     // How we will move
     public float maxSpeed = 1.0f;
@@ -22,20 +24,13 @@ public class AntBehavior : MonoBehaviour
 
     // How we see the world
     [SerializeField]
-    private float antSight = 3.0f;
+    private float antSight = 5.0f;
     [SerializeField]
     private LayerMask playerLayers;
     [SerializeField]
     private LayerMask enemyLayers;
     [SerializeField]
     private LayerMask foodLayers;
-
-    // Some variables that we might not need
-    Vector2 position;
-    Vector2 velocity;
-    Vector2 desiredDirection;
-    float rotationAngle;
-
 
     private void Start()
     {
@@ -45,8 +40,16 @@ public class AntBehavior : MonoBehaviour
 
     private void Move()
     {
+        desiredDirection = (target.transform.position - gameObject.transform.position).normalized;
+        float velocity = maxSpeed;
         rb.AddForce(desiredDirection * velocity * Time.deltaTime);
-        rb.rotation = rotationAngle;
+    }
+
+    private void Rotate()
+    {
+        desiredRotation = Quaternion.LookRotation(Vector3.forward, desiredDirection);
+        float rotateSpeed = 7200f;
+        gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, rotateSpeed * Time.deltaTime);
     }
 
     private void CalculateDesiredPosition()
@@ -72,7 +75,7 @@ public class AntBehavior : MonoBehaviour
                 if (distanceToFound < vectorToClosest.magnitude)
                 {
                     vectorToClosest = found.transform.position - scanOriginPosition;
-                    Debug.Log("Found Object " + found + " is closer. VectorTowards: " + vectorToClosest);
+                    //Debug.Log("Found Object " + found + " is closer. VectorTowards: " + vectorToClosest);
                 }
             }
 
@@ -82,29 +85,11 @@ public class AntBehavior : MonoBehaviour
         return Vector3.zero;  // Return zero vector if no colliders found
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        desiredDirection = ((Vector2)target.position - position).normalized;
-        //desiredDirection = (desiredDirection + Random.insideUnitCircle * wanderStrength);
-
-        Vector2 desiredVelocity = desiredDirection * maxSpeed;
-        Vector2 desiredSteeringForce = (desiredVelocity - velocity) * steerStrength;
-        Vector2 acceleration = Vector2.ClampMagnitude(desiredSteeringForce, steerStrength) / 1;
-
-        velocity = Vector2.ClampMagnitude(velocity + acceleration * Time.deltaTime, maxSpeed);
-        position += velocity * Time.deltaTime;
-
-        rotationAngle = Mathf.Atan2(velocity.x, velocity.y) * Mathf.Rad2Deg;
-        //transform.SetPositionAndRotation(position, Quaternion.Euler(0, 0, angle));
-
-        //rb.velocity = velocity;
-    }
-
     private void FixedUpdate()
     {
         CalculateDesiredPosition();
         Move();
+        Rotate();
     }
 
     private void OnDrawGizmosSelected()

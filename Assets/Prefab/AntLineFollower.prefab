@@ -141,7 +141,7 @@ MonoBehaviour:
   avoidEnemyStrength: 2
   desirePlayersStrength: 3
   desireFoodStrength: 5
-  antSight: 3
+  antSight: 5
   playerLayers:
     serializedVersion: 2
     m_Bits: 64

@@ -754,6 +754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenuUI: {fileID: 433773468}
+  mainLevelName: TestLevel
 --- !u!1 &1278804824
 GameObject:
   m_ObjectHideFlags: 0

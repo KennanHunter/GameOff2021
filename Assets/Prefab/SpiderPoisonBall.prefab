@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8067afc909c0bd84a8b9328ba4b5bc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 1.1
+  attackRange: 0.75
   playerLayers:
     serializedVersion: 2
     m_Bits: 64

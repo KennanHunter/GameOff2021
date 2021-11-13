@@ -7,6 +7,9 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject MainMenuUI;
 
+    [SerializeField]
+    private string mainLevelName;
+
     void Start()
     {
 
@@ -19,7 +22,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Play()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(mainLevelName);
     }
     public void Credits()
     {

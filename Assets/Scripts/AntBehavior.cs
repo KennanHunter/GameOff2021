@@ -7,15 +7,20 @@ public class AntBehavior : MonoBehaviour
 {
     // Tutorial https://www.youtube.com/watch?v=X-iSQQgOd1A&ab_channel=SebastianLague
 
+    [SerializeField]
     public Transform target;  // What we will move towards
     private Rigidbody2D rb;  // Our rigidbody to apply force on
     Vector3 desiredDirection;  // Direction to target
     Quaternion desiredRotation;  // desired rotation
 
     // How we will move
-    public float maxSpeed = 1.0f;
+    public float maxSpeed = 5.0f;
+    public float moveSpeed = 2.0f;
+    public float rotateSpeed = 720f;
     public float steerStrength = 0.5f;
     public float wanderStrength = 0.25f;
+    public float stoppingDistance = 0.25f;
+    public float targetDistanceBounds = 3.0f;
 
     // Our preferences that determine where we will move
     public float avoidEnemyStrength = 2f;
@@ -35,32 +40,62 @@ public class AntBehavior : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        target = gameObject.transform;
+        target.parent = null;  // Unparent target from Ant Follower
+        
+        // I want the ants meander if they can't find any stimulus
+        // Ideally Meander() will have the ant move forwards in the frontal 90 degrees randomly
     }
 
     private void Move()
     {
-        desiredDirection = (target.transform.position - gameObject.transform.position).normalized;
-        float velocity = maxSpeed;
-        rb.AddForce(desiredDirection * velocity * Time.deltaTime);
+        // Clamp velocity
+        if(rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y) * 0.5f;
+            return;
+        }
+
+        desiredDirection = target.transform.position - gameObject.transform.position;
+
+        // Apply force until within stopping distance
+        //if(desiredDirection.magnitude >= stoppingDistance)
+        //{
+        //    rb.AddForce(desiredDirection.normalized * moveSpeed * Time.deltaTime, ForceMode2D.Force);
+        //}
+        if(rb.velocity.magnitude < moveSpeed)
+        {
+            rb.velocity = new Vector2(desiredDirection.normalized.x, desiredDirection.normalized.y) * moveSpeed;
+        }
+        else
+        {
+            rb.AddForce(desiredDirection.normalized * moveSpeed * Time.deltaTime, ForceMode2D.Force);
+        }
     }
 
     private void Rotate()
     {
+        // Vector pointing towards desired Direction
+        desiredDirection = (target.transform.position - gameObject.transform.position).normalized;
+        // Rotation from (0, 0, 0) to desiredDirection
         desiredRotation = Quaternion.LookRotation(Vector3.forward, desiredDirection);
-        float rotateSpeed = 7200f;
-        gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, rotateSpeed * Time.deltaTime);
+        // Apply rotation
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, rotateSpeed * Time.deltaTime);
     }
 
     private void CalculateDesiredPosition()
     {
+        // Find vectors to the closest stimuli of each Layer Type
         Vector3 enemyVector = FindVector3TowardsClosestCollider(gameObject.transform.position, antSight, enemyLayers);
         Vector3 playerVector = FindVector3TowardsClosestCollider(gameObject.transform.position, antSight, playerLayers);
         Vector3 foodVector = FindVector3TowardsClosestCollider(gameObject.transform.position, antSight, foodLayers);
 
-        target.position += enemyVector * avoidEnemyStrength * Time.deltaTime * -1;
-        target.position += playerVector * desirePlayersStrength * Time.deltaTime;
-        target.position += foodVector * desireFoodStrength * Time.deltaTime;
+        // Set our target position away from enemies and towards Food and Players
+        if((target.position - transform.position).magnitude < targetDistanceBounds)
+        {
+            target.position += enemyVector * avoidEnemyStrength * Time.deltaTime * -1;
+            target.position += playerVector * desirePlayersStrength * Time.deltaTime;
+            target.position += foodVector * desireFoodStrength * Time.deltaTime;
+        }
     }
 
     public Vector3 FindVector3TowardsClosestCollider(Vector3 scanOriginPosition, float sightDistance, LayerMask layerToLookFor)
@@ -92,11 +127,11 @@ public class AntBehavior : MonoBehaviour
         Rotate();
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(target.transform.position, 0.5f);
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(gameObject.transform.position, antSight);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawSphere(target.transform.position, 0.5f);
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere(gameObject.transform.position, antSight);
+    //}
 }

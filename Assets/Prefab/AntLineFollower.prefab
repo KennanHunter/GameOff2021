@@ -99,7 +99,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 1
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -134,6 +134,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09e528c91ab7b54a9ef0741955783e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2
-  steerStrength: 2
-  wanderStrength: 1
+  target: {fileID: 0}
+  maxSpeed: 1
+  steerStrength: 0.5
+  wanderStrength: 0.25
+  avoidEnemyStrength: 2
+  desirePlayersStrength: 3
+  desireFoodStrength: 5
+  antSight: 3
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  foodLayers:
+    serializedVersion: 2
+    m_Bits: 4096

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-
+    public AudioSource TypeSound;
     public Text nameText;
     public Text dialogueText;
 
@@ -16,9 +16,16 @@ public class DialogueManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        TypeSound = GetComponent<AudioSource>();
         sentences = new Queue<string>();
     }
-
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            DisplayNextSentence();
+        }
+    }
     public void StartDialogue(Dialogue dialogue)
     {
         animator.SetBool("IsOpen", true);
@@ -50,12 +57,14 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence)
     {
+        TypeSound.Play(); // PLAYS SOUND AT THE START
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return null;
+            yield return new WaitForSeconds(0.01f);
         }
+        TypeSound.Stop(); // STOPS THE SOUND AS SOON AS THE TEXT STOPS ANIMATING
     }
 
     void EndDialogue()

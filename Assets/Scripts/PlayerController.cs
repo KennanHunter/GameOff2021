@@ -86,6 +86,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void HealDamage(float recoverHealth)
+    {
+        health += recoverHealth;
+        Debug.Log(gameObject.name + " Gained health = " + health);
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
     private void Update()
     {
 
@@ -97,6 +107,10 @@ public class PlayerController : MonoBehaviour
         if (health <= maxHealth * 0.75)
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         }
         if (health <= maxHealth * 0.50)
         {

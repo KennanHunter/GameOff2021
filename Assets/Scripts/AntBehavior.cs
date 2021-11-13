@@ -6,17 +6,18 @@ using UnityEngine;
 public class AntBehavior : MonoBehaviour
 {
     // Tutorial https://www.youtube.com/watch?v=X-iSQQgOd1A&ab_channel=SebastianLague
+    // By this point, we are so far off from the tutorial. Still a nice guide though
 
     [SerializeField]
     public Transform target;  // What we will move towards
     private Rigidbody2D rb;  // Our rigidbody to apply force on
-    Vector3 desiredDirection;  // Direction to target
-    Quaternion desiredRotation;  // desired rotation
+    //Vector3 desiredDirection;  // Direction to target
+    //Quaternion desiredRotation;  // desired rotation
 
     // How we will move
-    public float maxSpeed = 5.0f;
+    public float maxSpeed = 10.0f;
     public float moveSpeed = 2.0f;
-    public float rotateSpeed = 720f;
+    public float rotateSpeed = 720f * 2;
     public float steerStrength = 0.5f;
     public float wanderStrength = 0.25f;
     public float stoppingDistance = 0.25f;
@@ -48,36 +49,35 @@ public class AntBehavior : MonoBehaviour
 
     private void Move()
     {
-        // Clamp velocity
+        // Slow velocity if too fast
         if(rb.velocity.magnitude > maxSpeed)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y) * 0.5f;
             return;
         }
 
-        desiredDirection = target.transform.position - gameObject.transform.position;
+        Vector3 forwardsDirection = transform.up;  // Our forwards (green) direction
+        Vector2 randomNudge = Random.insideUnitCircle;
+        forwardsDirection = forwardsDirection + new Vector3(randomNudge.x * wanderStrength, randomNudge.y * wanderStrength, 0);
 
-        // Apply force until within stopping distance
-        //if(desiredDirection.magnitude >= stoppingDistance)
-        //{
-        //    rb.AddForce(desiredDirection.normalized * moveSpeed * Time.deltaTime, ForceMode2D.Force);
-        //}
+        // If less than moveSpeed, instantly set velocity to movespeed forwards
         if(rb.velocity.magnitude < moveSpeed)
         {
-            rb.velocity = new Vector2(desiredDirection.normalized.x, desiredDirection.normalized.y) * moveSpeed;
+            rb.velocity = new Vector2(forwardsDirection.normalized.x, forwardsDirection.normalized.y) * moveSpeed;
         }
         else
         {
-            rb.AddForce(desiredDirection.normalized * moveSpeed * Time.deltaTime, ForceMode2D.Force);
+            // Add some force on top
+            rb.AddForce(forwardsDirection.normalized * moveSpeed * Time.deltaTime, ForceMode2D.Force);
         }
     }
 
     private void Rotate()
     {
         // Vector pointing towards desired Direction
-        desiredDirection = (target.transform.position - gameObject.transform.position).normalized;
+        Vector3 desiredDirection = (target.transform.position - gameObject.transform.position).normalized;
         // Rotation from (0, 0, 0) to desiredDirection
-        desiredRotation = Quaternion.LookRotation(Vector3.forward, desiredDirection);
+        Quaternion desiredRotation = Quaternion.LookRotation(Vector3.forward, desiredDirection);
         // Apply rotation
         transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, rotateSpeed * Time.deltaTime);
     }

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody2D rb;
     private Vector2 movementInput = Vector2.zero;
+    public Animator animator;
 
     private float dashTimer = 0f;
     private float dashCooldown = 3.0f;
@@ -99,7 +100,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-
+        
         // Processing Inputs
         Vector3 rotate = new Vector3(movementInput.x, 0, movementInput.y);
 
@@ -120,6 +121,9 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.magnitude));
+        Debug.Log(rb.velocity.magnitude);
     }
 
     private void FixedUpdate()

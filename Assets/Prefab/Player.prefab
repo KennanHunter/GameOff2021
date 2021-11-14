@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 3579863106871799582}
   - component: {fileID: 3579863106871799579}
   - component: {fileID: 3579863106871799576}
+  - component: {fileID: 4983443039683806831}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -62,8 +63,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3579863106871799552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.01, y: 2.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.993, y: 2.07, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 3579863106310397673}
   - {fileID: 2377945714353527526}
@@ -110,7 +111,7 @@ SpriteRenderer:
   m_SortingLayerID: -1971425937
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b68ad63401ffe54489ef021d0e3c076d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04640a825fa79aa4bb4146dee48f7a7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -138,6 +139,7 @@ MonoBehaviour:
   dashForce: 10
   maxHealth: 100
   health: 100
+  animator: {fileID: 4983443039683806831}
 --- !u!114 &3579863106871799577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,9 +272,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.026580274, y: -0.09303236}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.8765602
 --- !u!198 &3579863106871799579
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -409,7 +411,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -461,9 +463,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 1
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      minMaxState: 2
+      minColor: {r: 0.20754719, g: 0.014489136, b: 0.014489136, a: 1}
+      maxColor: {r: 0.8962264, g: 0.22321108, b: 0.22321108, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.042452812, b: 0.042452812, a: 1}
@@ -525,7 +527,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -900,14 +902,14 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
-    angle: 90
+    type: 10
+    angle: 20
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 90}
+    m_Position: {x: 0, y: 0.5, z: 0}
+    m_Rotation: {x: -0, y: 0, z: 71.503975}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -1044,9 +1046,9 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 45
-      mode: 1
-      spread: 0
+      value: 45.28
+      mode: 0
+      spread: 0.3
       speed:
         serializedVersion: 2
         minMaxState: 0
@@ -1106,7 +1108,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1602,8 +1604,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -1721,7 +1723,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: 21300000, guid: c901cad035191e743999be4325f17e8d, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -5022,7 +5024,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
-  m_MinParticleSize: 0.1
+  m_MinParticleSize: 0.001
   m_MaxParticleSize: 0.25
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
@@ -5045,6 +5047,25 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!95 &4983443039683806831
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3579863106871799552}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aef2fe519f9935c46992f9a939280f52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2602098112299111354
 PrefabInstance:
   m_ObjectHideFlags: 0

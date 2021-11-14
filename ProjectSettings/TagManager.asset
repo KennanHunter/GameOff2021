@@ -41,6 +41,12 @@ TagManager:
   - name: Background
     uniqueID: 2615590829
     locked: 0
+  - name: SpiderWebLayer
+    uniqueID: 2095052711
+    locked: 0
+  - name: Enemy
+    uniqueID: 2782725469
+    locked: 0
   - name: Midground
     uniqueID: 2323541359
     locked: 0

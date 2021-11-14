@@ -17,8 +17,11 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
     [SerializeField]
     public float timeBetweenAttacks = 1.0f;
+    [SerializeField]
+    public Animator animator;
 
     private float attackTimer = 0f;
+    
 
     public void OnAttack()
     {
@@ -30,6 +33,8 @@ public class PlayerCombat : MonoBehaviour
 
         // Play attack animation
         gameObject.GetComponent<ParticleSystem>().Play();
+        animator.SetBool("IsAttacking", true);
+        //animator.Play("Queen_bite");
 
         // Detect enemies in range that are in the "Enemy" Layer
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -48,8 +53,9 @@ public class PlayerCombat : MonoBehaviour
                 Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
                 enemyRb.AddForce(transform.up * attackForce, ForceMode2D.Impulse);
             }
-            attackTimer = timeBetweenAttacks;
+            
         }
+        attackTimer = timeBetweenAttacks;
     }
 
     // Update is called once per frame
@@ -62,6 +68,8 @@ public class PlayerCombat : MonoBehaviour
         else
         {
             attackTimer = 0;
+           animator.SetBool("IsAttacking", false);
         }
+        
     }
 }

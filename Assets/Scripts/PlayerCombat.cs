@@ -47,8 +47,13 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
             }
+            // Apply damage to Web Segments
+            if (enemy.GetComponent<RopeSegment>())
+            {
+                enemy.GetComponent<RopeSegment>().TakeDamage(attackDamage);
+            }
             // Apply force to Rigidbodies
-            if(enemy.GetComponent<Rigidbody2D>())
+            if (enemy.GetComponent<Rigidbody2D>())
             {
                 Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
                 enemyRb.AddForce(transform.up * attackForce, ForceMode2D.Impulse);

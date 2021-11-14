@@ -35,6 +35,10 @@ public class EnemyController : MonoBehaviour
         Debug.Log(gameObject.name + " health = " + health);
         if(health <= 0)
         {
+            if(GetComponent<EnemySpider>())
+            {
+                GetComponent<EnemySpider>().OnDeath();
+            }
             Destroy(gameObject);
         }
     }

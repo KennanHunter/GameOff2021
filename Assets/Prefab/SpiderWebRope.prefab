@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 669845450591394591}
   - component: {fileID: 669845450591394588}
   - component: {fileID: 2721295844802764319}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: SpiderWebRope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,11 +72,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2095052711
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: f1ab24e00dfd1664391fd75e32c21b2f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -171,3 +171,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectedAbove: {fileID: 0}
   connectedBelow: {fileID: 0}
+  grabbedBody: {fileID: 0}
+  segmentHealth: 10

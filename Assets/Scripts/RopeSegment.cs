@@ -6,6 +6,7 @@ public class RopeSegment : MonoBehaviour
 {
     public GameObject connectedAbove, connectedBelow;
     public Transform grabbedBody = null;
+    public float segmentHealth = 10f;
 
     void Start()
     {
@@ -22,6 +23,14 @@ public class RopeSegment : MonoBehaviour
         else
         {
             GetComponent<HingeJoint2D>().connectedAnchor = new Vector2(0, 0);  // This rope segment is the top
+        }
+    }
+    public void TakeDamage(float dmg)
+    {
+        segmentHealth -= dmg;
+        if(segmentHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

@@ -19,7 +19,7 @@ public class AntBehavior : MonoBehaviour
     private float moveSpeed = 2.0f;
     private float rotateSpeed = 720f * 2;
     private float wanderStrength = 0.1f;
-    private float targetDistanceBounds = 3.0f;
+    private float targetDistanceBounds = 2.0f;
 
     // Our preferences that determine where we will move
     public float avoidEnemyStrength = 2f;
@@ -78,9 +78,9 @@ public class AntBehavior : MonoBehaviour
         // Set our target position away from enemies and towards Food and Players
         if((target.position - transform.position).magnitude < targetDistanceBounds)
         {
-            //target.position += enemyVector * avoidEnemyStrength * Time.deltaTime * -1;
+            target.position += enemyVector * avoidEnemyStrength * Time.deltaTime * -1;
             target.position += playerVector * desirePlayersStrength * Time.deltaTime;
-            Debug.Log("Attraction to Player:" + playerVector * desirePlayersStrength * Time.deltaTime);
+            //Debug.Log("Attraction to Player:" + playerVector * desirePlayersStrength * Time.deltaTime);
             if(!hasCroissant && myCroissant == null)
             {
                 //target.position += foodVector * desireFoodStrength * Time.deltaTime;
@@ -98,15 +98,11 @@ public class AntBehavior : MonoBehaviour
             Vector2 vectorToClosest = Vector2.one * sightDistance;
             foreach (Collider2D found in foundColliderList)
             {
-                if(!found.GetComponent<PlayerController>() || !found.GetComponent<EnemyController>())
-                {
-                    continue;
-                }
                 float distanceToFound = (found.transform.position - scanOriginPosition).magnitude;
                 if (distanceToFound < vectorToClosest.magnitude)
                 {
                     vectorToClosest = found.transform.position - scanOriginPosition;
-                    Debug.Log("Found Object " + found.name + " is closer. VectorTowards: " + vectorToClosest);
+                    //Debug.Log("Found Object " + found.name + " is closer. VectorTowards: " + vectorToClosest);
                 }
             }
 

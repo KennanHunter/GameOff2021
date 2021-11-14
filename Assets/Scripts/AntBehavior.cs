@@ -11,8 +11,9 @@ public class AntBehavior : MonoBehaviour
     [SerializeField]
     public Transform target;  // What we will move towards
     private Rigidbody2D rb;  // Our rigidbody to apply force on
-    //Vector3 desiredDirection;  // Direction to target
-    //Quaternion desiredRotation;  // desired rotation
+
+    public Croissant myCroissant = null;
+    public bool hasCroissant = false;
 
     // How we will move
     public float maxSpeed = 10.0f;
@@ -87,14 +88,17 @@ public class AntBehavior : MonoBehaviour
         // Find vectors to the closest stimuli of each Layer Type
         Vector3 enemyVector = FindVector3TowardsClosestCollider(gameObject.transform.position, antSight, enemyLayers);
         Vector3 playerVector = FindVector3TowardsClosestCollider(gameObject.transform.position, antSight, playerLayers);
-        Vector3 foodVector = FindVector3TowardsClosestCollider(gameObject.transform.position, antSight, foodLayers);
+        Vector3 foodVector = FindVector3TowardsClosestFood(gameObject.transform.position, antSight, foodLayers);
 
         // Set our target position away from enemies and towards Food and Players
         if((target.position - transform.position).magnitude < targetDistanceBounds)
         {
             target.position += enemyVector * avoidEnemyStrength * Time.deltaTime * -1;
             target.position += playerVector * desirePlayersStrength * Time.deltaTime;
-            target.position += foodVector * desireFoodStrength * Time.deltaTime;
+            if(!hasCroissant)
+            {
+                target.position += foodVector * desireFoodStrength * Time.deltaTime;
+            }
         }
     }
 
@@ -120,11 +124,74 @@ public class AntBehavior : MonoBehaviour
         return Vector3.zero;  // Return zero vector if no colliders found
     }
 
+    public Vector3 FindVector3TowardsClosestFood(Vector3 scanOriginPosition, float sightDistance, LayerMask layerToLookFor)
+    {
+        Collider2D[] foundColliderList = Physics2D.OverlapCircleAll(scanOriginPosition, sightDistance, layerToLookFor);
+        if (foundColliderList.Length > 0)  // If we found any food
+        {
+            Vector2 vectorToClosest = foundColliderList[0].transform.position - scanOriginPosition;
+            foreach (Collider2D found in foundColliderList)
+            {
+                // If there is a croissant
+                // TODO: Replace croissant with FoodItem
+                if (found.GetComponent<Croissant>() != null)
+                {
+                    // if Croissant is already being carried
+                    if (found.GetComponent<Croissant>().isCarried)
+                    {
+                        // Ignore this croissant
+                        continue;
+                    }
+                    else
+                    {
+                        // Distance to croissant
+                        float distanceToFound = (found.transform.position - scanOriginPosition).magnitude;
+                        if (distanceToFound < vectorToClosest.magnitude)
+                        {
+                            vectorToClosest = found.transform.position - scanOriginPosition;
+                        }
+                    }
+                } 
+            }
+
+            return vectorToClosest;
+        }
+
+        return Vector3.zero;  // Return zero vector if no colliders found
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // If you bump into croissant
+        if(collision.collider.GetComponent<Croissant>())
+        {
+            if(collision.collider.GetComponent<Croissant>().isCarried)
+            {
+                return;
+            }
+            // Set Croissant to be carried by this ant
+            myCroissant = collision.collider.GetComponent<Croissant>();
+            collision.collider.GetComponent<Transform>().parent = gameObject.transform;
+            collision.collider.GetComponent<Transform>().position = gameObject.transform.position;
+            myCroissant.isCarried = true;
+            hasCroissant = true;
+        }
+    }
+
     private void FixedUpdate()
     {
         CalculateDesiredPosition();
         Move();
         Rotate();
+
+        if(myCroissant != null)
+        {
+            myCroissant.GetComponent<Transform>().position = gameObject.transform.position;
+        }
+        else
+        {
+            hasCroissant = false;
+        }
     }
 
     //private void OnDrawGizmosSelected()

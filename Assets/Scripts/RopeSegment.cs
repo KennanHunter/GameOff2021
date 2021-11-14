@@ -39,6 +39,9 @@ public class RopeSegment : MonoBehaviour
 
     private void FixedUpdate()
     {
-        grabbedBody.transform.position = gameObject.transform.position;
+        if(grabbedBody != null)
+        {
+            grabbedBody.transform.position = gameObject.transform.position;
+        }
     }
 }

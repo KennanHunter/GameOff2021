@@ -16,10 +16,9 @@ public class AntBehavior : MonoBehaviour
     public bool hasCroissant = false;
 
     // How we will move
-    private float maxSpeed = 10.0f;
     private float moveSpeed = 2.0f;
     private float rotateSpeed = 720f * 2;
-    private float wanderStrength = 0.5f;
+    private float wanderStrength = 0.1f;
     private float targetDistanceBounds = 3.0f;
 
     // Our preferences that determine where we will move
@@ -51,37 +50,26 @@ public class AntBehavior : MonoBehaviour
 
     private void Move()
     {
-        // Slow velocity if too fast
-        if(rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y) * 0.5f;
-            return;
-        }
-
         Vector3 forwardsDirection = transform.up;  // Our forwards (green) direction
-        Vector2 randomNudge = Random.insideUnitCircle;
-        forwardsDirection = forwardsDirection + new Vector3(randomNudge.x * wanderStrength, randomNudge.y * wanderStrength, 0);
 
         // If less than moveSpeed, instantly set velocity to movespeed forwards
         if(rb.velocity.magnitude < moveSpeed)
         {
             rb.velocity = new Vector2(forwardsDirection.normalized.x, forwardsDirection.normalized.y) * moveSpeed;
-        }
-        else
-        {
-            // Add some force on top
-            rb.AddForce(forwardsDirection.normalized * moveSpeed * Time.deltaTime, ForceMode2D.Force);
+            //Debug.Log("Setting Velocity: " + rb.velocity);
         }
     }
 
     private void Rotate()
     {
         // Vector pointing towards desired Direction
-        Vector3 desiredDirection = (target.transform.position - gameObject.transform.position).normalized;
+        Vector2 randomNudge = Random.insideUnitCircle * wanderStrength;
+        Vector3 desiredDirection = (target.transform.position - gameObject.transform.position).normalized + new Vector3(randomNudge.x, randomNudge.y, 0);
         // Rotation from (0, 0, 0) to desiredDirection
         Quaternion desiredRotation = Quaternion.LookRotation(Vector3.forward, desiredDirection);
         // Apply rotation
         transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, rotateSpeed * Time.deltaTime);
+        //Debug.Log("Rotating towards: " + desiredRotation);
     }
 
     private void CalculateDesiredPosition()
@@ -94,11 +82,12 @@ public class AntBehavior : MonoBehaviour
         // Set our target position away from enemies and towards Food and Players
         if((target.position - transform.position).magnitude < targetDistanceBounds)
         {
-            target.position += enemyVector * avoidEnemyStrength * Time.deltaTime * -1;
+            //target.position += enemyVector * avoidEnemyStrength * Time.deltaTime * -1;
             target.position += playerVector * desirePlayersStrength * Time.deltaTime;
+            Debug.Log("Attraction to Player:" + playerVector * desirePlayersStrength * Time.deltaTime);
             if(!hasCroissant && myCroissant == null)
             {
-                target.position += foodVector * desireFoodStrength * Time.deltaTime;
+                //target.position += foodVector * desireFoodStrength * Time.deltaTime;
             }
         }
     }
@@ -106,22 +95,26 @@ public class AntBehavior : MonoBehaviour
     public Vector3 FindVector3TowardsClosestCollider(Vector3 scanOriginPosition, float sightDistance, LayerMask layerToLookFor)
     {
         Collider2D[] foundColliderList = Physics2D.OverlapCircleAll(scanOriginPosition, sightDistance, layerToLookFor);
-        if (foundColliderList.Length > 0)  // If we found any enemies
+        if (foundColliderList.Length > 0)  // If we found any colliders
         {
-            Vector2 vectorToClosest = foundColliderList[0].transform.position - scanOriginPosition;
+            Vector2 vectorToClosest = Vector2.one * sightDistance;
             foreach (Collider2D found in foundColliderList)
             {
+                if(!found.GetComponent<PlayerController>() || !found.GetComponent<EnemyController>())
+                {
+                    continue;
+                }
                 float distanceToFound = (found.transform.position - scanOriginPosition).magnitude;
                 if (distanceToFound < vectorToClosest.magnitude)
                 {
                     vectorToClosest = found.transform.position - scanOriginPosition;
-                    //Debug.Log("Found Object " + found + " is closer. VectorTowards: " + vectorToClosest);
+                    Debug.Log("Found Object " + found.name + " is closer. VectorTowards: " + vectorToClosest);
                 }
             }
 
             return vectorToClosest;
         }
-
+        Debug.Log("No colliders found");
         return Vector3.zero;  // Return zero vector if no colliders found
     }
 
@@ -170,6 +163,10 @@ public class AntBehavior : MonoBehaviour
             {
                 return;
             }
+            if (hasCroissant)
+            {
+                return;
+            }
             // Set Croissant to be carried by this ant
             myCroissant = collision.collider.GetComponent<Croissant>();
             collision.collider.GetComponent<Transform>().parent = gameObject.transform;
@@ -183,11 +180,17 @@ public class AntBehavior : MonoBehaviour
     {
         CalculateDesiredPosition();
         Move();
-        Rotate();
+        if((target.position - transform.position).magnitude > 1)
+        {
+            Rotate();
+        }
 
         if(myCroissant != null)
         {
-            myCroissant.GetComponent<Transform>().position = gameObject.transform.position;
+            myCroissant.GetComponent<Transform>().parent = gameObject.transform;
+            myCroissant.GetComponent<Transform>().position = gameObject.transform.position + new Vector3(0f, 0.5f, 0f);
+            myCroissant.GetComponent<Transform>().rotation = gameObject.transform.rotation;
+            myCroissant.GetComponent<Rigidbody2D>().Sleep();
         }
         else
         {

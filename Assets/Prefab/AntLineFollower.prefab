@@ -171,16 +171,16 @@ MonoBehaviour:
   hasCroissant: 0
   avoidEnemyStrength: 2
   desirePlayersStrength: 3
-  desireFoodStrength: 10
+  desireFoodStrength: 0
   playerLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   foodLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
 --- !u!1 &6890141520066740241
 GameObject:
   m_ObjectHideFlags: 0

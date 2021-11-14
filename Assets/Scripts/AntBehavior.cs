@@ -16,21 +16,18 @@ public class AntBehavior : MonoBehaviour
     public bool hasCroissant = false;
 
     // How we will move
-    public float maxSpeed = 10.0f;
-    public float moveSpeed = 2.0f;
-    public float rotateSpeed = 720f * 2;
-    public float steerStrength = 0.5f;
-    public float wanderStrength = 0.25f;
-    public float stoppingDistance = 0.25f;
-    public float targetDistanceBounds = 3.0f;
+    private float maxSpeed = 10.0f;
+    private float moveSpeed = 2.0f;
+    private float rotateSpeed = 720f * 2;
+    private float wanderStrength = 0.5f;
+    private float targetDistanceBounds = 3.0f;
 
     // Our preferences that determine where we will move
     public float avoidEnemyStrength = 2f;
     public float desirePlayersStrength = 3f;
-    public float desireFoodStrength = 5f;
+    public float desireFoodStrength = 10f;
 
     // How we see the world
-    [SerializeField]
     private float antSight = 5.0f;
     [SerializeField]
     private LayerMask playerLayers;
@@ -43,7 +40,11 @@ public class AntBehavior : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         target.parent = null;  // Unparent target from Ant Follower
-        
+
+        enemyLayers = LayerMask.NameToLayer("Enemy");
+        playerLayers = LayerMask.NameToLayer("Player");
+        foodLayers = LayerMask.NameToLayer("Food");
+
         // I want the ants meander if they can't find any stimulus
         // Ideally Meander() will have the ant move forwards in the frontal 90 degrees randomly
     }
@@ -95,7 +96,7 @@ public class AntBehavior : MonoBehaviour
         {
             target.position += enemyVector * avoidEnemyStrength * Time.deltaTime * -1;
             target.position += playerVector * desirePlayersStrength * Time.deltaTime;
-            if(!hasCroissant)
+            if(!hasCroissant && myCroissant == null)
             {
                 target.position += foodVector * desireFoodStrength * Time.deltaTime;
             }

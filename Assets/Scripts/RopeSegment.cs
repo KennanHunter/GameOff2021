@@ -5,6 +5,7 @@ using UnityEngine;
 public class RopeSegment : MonoBehaviour
 {
     public GameObject connectedAbove, connectedBelow;
+    public Transform grabbedBody = null;
 
     void Start()
     {
@@ -22,5 +23,22 @@ public class RopeSegment : MonoBehaviour
         {
             GetComponent<HingeJoint2D>().connectedAnchor = new Vector2(0, 0);  // This rope segment is the top
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.collider.GetComponent<AntBehavior>())
+        {
+            return;
+        }
+        else
+        {
+            grabbedBody = collision.collider.transform;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        grabbedBody.transform.position = gameObject.transform.position;
     }
 }

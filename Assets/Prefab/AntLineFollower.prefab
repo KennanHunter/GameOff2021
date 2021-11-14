@@ -153,7 +153,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!114 &2219809495545897569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,17 +167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7144146452151798465}
-  maxSpeed: 50
-  moveSpeed: 2
-  rotateSpeed: 1440
-  steerStrength: 0.5
-  wanderStrength: 0.25
-  stoppingDistance: 1
-  targetDistanceBounds: 3
+  myCroissant: {fileID: 0}
+  hasCroissant: 0
   avoidEnemyStrength: 2
   desirePlayersStrength: 3
-  desireFoodStrength: 5
-  antSight: 5
+  desireFoodStrength: 10
   playerLayers:
     serializedVersion: 2
     m_Bits: 64

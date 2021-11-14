@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Croissant : MonoBehaviour
 {
     [SerializeField]
@@ -11,10 +12,19 @@ public class Croissant : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // If we are carried and touched by ant, ignore
+        if(collision.collider.GetComponent<AntBehavior>() && isCarried)
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
         if (collision.collider.GetComponent<PlayerController>())
         {
             PlayerController playerController = collision.collider.GetComponent<PlayerController>();
-            //if(playerController.)
+            // Don't eat croissant if health is full
+            if (playerController.health >= playerController.maxHealth)
+            {
+                return;
+            }
             collision.collider.GetComponent<PlayerController>().HealDamage(healthToRestore);
             Destroy(gameObject);
         }

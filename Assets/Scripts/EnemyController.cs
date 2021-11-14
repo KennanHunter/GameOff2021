@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     public float sightDistance = 8.0f;
 
+    private float rotateSpeed = 720.0f;
+
     private Rigidbody2D rb;
 
     private Transform target;
@@ -42,15 +44,15 @@ public class EnemyController : MonoBehaviour
     {
         if(health <= maxHealth * 0.75)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
         }
         if (health <= maxHealth * 0.50)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.gray;
         }
         if (health <= maxHealth * 0.25)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         }
     }
 
@@ -63,6 +65,13 @@ public class EnemyController : MonoBehaviour
             moveVector = moveVector.normalized;
             //rb.AddForce(moveVector.normalized * moveSpeed * Time.deltaTime);
             rb.velocity = new Vector2(moveVector.x * moveSpeed, moveVector.y * moveSpeed);
+        }
+        // faces direction of movement (by rotating sprite renderer child
+        if(GetComponentInChildren<SpriteRenderer>())
+        {
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
+            GetComponentInChildren<Transform>().transform.rotation = 
+                Quaternion.RotateTowards(GetComponentInChildren<Transform>().transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
         }
     }
 }

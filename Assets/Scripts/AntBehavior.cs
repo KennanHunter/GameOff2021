@@ -40,10 +40,6 @@ public class AntBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         target.parent = null;  // Unparent target from Ant Follower
 
-        enemyLayers = LayerMask.NameToLayer("Enemy");
-        playerLayers = LayerMask.NameToLayer("Player");
-        foodLayers = LayerMask.NameToLayer("Food");
-
         // I want the ants meander if they can't find any stimulus
         // Ideally Meander() will have the ant move forwards in the frontal 90 degrees randomly
     }
@@ -95,6 +91,8 @@ public class AntBehavior : MonoBehaviour
     public Vector3 FindVector3TowardsClosestCollider(Vector3 scanOriginPosition, float sightDistance, LayerMask layerToLookFor)
     {
         Collider2D[] foundColliderList = Physics2D.OverlapCircleAll(scanOriginPosition, sightDistance, layerToLookFor);
+        Debug.Log(foundColliderList);
+        Debug.Log(layerToLookFor);
         if (foundColliderList.Length > 0)  // If we found any colliders
         {
             Vector2 vectorToClosest = Vector2.one * sightDistance;
@@ -198,11 +196,11 @@ public class AntBehavior : MonoBehaviour
         }
     }
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawSphere(target.transform.position, 0.5f);
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawSphere(gameObject.transform.position, antSight);
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(target.transform.position, 0.5f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(gameObject.transform.position, antSight);
+    }
 }

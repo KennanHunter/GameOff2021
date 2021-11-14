@@ -27,7 +27,7 @@ public class AntBehavior : MonoBehaviour
     public float desireFoodStrength = 10f;
 
     // How we see the world
-    private float antSight = 5.0f;
+    private float antSight = 10.0f;
     [SerializeField]
     private LayerMask playerLayers;
     [SerializeField]
@@ -83,7 +83,7 @@ public class AntBehavior : MonoBehaviour
             //Debug.Log("Attraction to Player:" + playerVector * desirePlayersStrength * Time.deltaTime);
             if(!hasCroissant && myCroissant == null)
             {
-                //target.position += foodVector * desireFoodStrength * Time.deltaTime;
+                target.position += foodVector * desireFoodStrength * Time.deltaTime;
             }
         }
     }
@@ -91,8 +91,7 @@ public class AntBehavior : MonoBehaviour
     public Vector3 FindVector3TowardsClosestCollider(Vector3 scanOriginPosition, float sightDistance, LayerMask layerToLookFor)
     {
         Collider2D[] foundColliderList = Physics2D.OverlapCircleAll(scanOriginPosition, sightDistance, layerToLookFor);
-        Debug.Log(foundColliderList);
-        Debug.Log(layerToLookFor);
+        //Debug.Log(layerToLookFor.ToString() + " we see: " + foundColliderList.GetLength());
         if (foundColliderList.Length > 0)  // If we found any colliders
         {
             Vector2 vectorToClosest = Vector2.one * sightDistance;
@@ -108,7 +107,7 @@ public class AntBehavior : MonoBehaviour
 
             return vectorToClosest;
         }
-        Debug.Log("No colliders found");
+        //Debug.Log("No colliders found");
         return Vector3.zero;  // Return zero vector if no colliders found
     }
 
@@ -190,13 +189,5 @@ public class AntBehavior : MonoBehaviour
         {
             hasCroissant = false;
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(target.transform.position, 0.5f);
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(gameObject.transform.position, antSight);
     }
 }

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: -8275674975295298855}
   - component: {fileID: 2993345806553598590}
   - component: {fileID: 2219809495545897569}
+  - component: {fileID: 8630709021969971257}
   m_Layer: 11
   m_Name: AntLineFollower
   m_TagString: Untagged
@@ -59,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 2993345806553598589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.4068465, y: -0.70264083, z: -14.719932}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 7144146452151798465}
   - {fileID: 2728779062033853057}
@@ -187,6 +188,25 @@ MonoBehaviour:
   foodLayers:
     serializedVersion: 2
     m_Bits: 4096
+--- !u!95 &8630709021969971257
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2993345806553598589}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 128c2de1b68901e4da17f6393ef10646, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6890141520066740241
 GameObject:
   m_ObjectHideFlags: 0

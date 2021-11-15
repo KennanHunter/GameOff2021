@@ -170,7 +170,7 @@ MonoBehaviour:
   target: {fileID: 7144146452151798465}
   myCroissant: {fileID: 0}
   hasCroissant: 0
-  avoidEnemyStrength: 2
+  avoidEnemyStrength: 0.5
   desirePlayersStrength: 3
   desireFoodStrength: 10
   playerLayers:
@@ -273,7 +273,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: caebf6c975039984a88b3d123f98d06c, type: 3}
-  m_Color: {r: 1, g: 0.92589796, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.92589796, b: 0, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

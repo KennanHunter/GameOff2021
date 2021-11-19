@@ -22,12 +22,14 @@ public class ExplosiveBarrel : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<EnemyController>())
         {
-            if (rb.velocity.magnitude > 1f)
+            if (rb.velocity.magnitude > 0.5f)
             {
                 // Play explosion animation
-                if(GetComponent<ParticleSystem>())
+                if(!GetComponent<ParticleSystem>().isPlaying)
                 {
-                    GetComponent<ParticleSystem>().Play();
+                    gameObject.GetComponent<ParticleSystem>().Play();
+                    
+                    Debug.Log("Playing animation");
                 }
 
                 // Detect enemies in range that are in the "Enemy" Layer

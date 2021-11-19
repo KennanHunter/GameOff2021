@@ -147,6 +147,7 @@ MonoBehaviour:
   connectedAbove: {fileID: 0}
   connectedBelow: {fileID: 0}
   grabbedBody: {fileID: 0}
+  segmentHealth: 10
 --- !u!58 &3081832620450426759
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8067afc909c0bd84a8b9328ba4b5bc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 0.75
+  attackRange: 0.55
   playerLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -183,5 +184,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackDamage: 5
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 1
   spikeSightRange: 5

@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff48d6e42a5f53499f425077d438a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenWebs: 8
+  timeBetweenWebs: 0.25
   timeBetweenAttacks: 1
   attackPoint: {fileID: 6415191473698594340}
   attackRange: 1

@@ -56,9 +56,9 @@ public class PlayerCombat : MonoBehaviour
             if (enemy.GetComponent<Rigidbody2D>())
             {
                 Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
-                enemyRb.AddForce(transform.up * attackForce, ForceMode2D.Impulse);
+                Vector2 directionToForce = (enemy.transform.position - transform.position).normalized;
+                enemyRb.AddForce(directionToForce * attackForce, ForceMode2D.Impulse);
             }
-            
         }
         attackTimer = timeBetweenAttacks;
     }

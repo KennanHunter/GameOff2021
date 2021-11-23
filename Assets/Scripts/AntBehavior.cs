@@ -16,6 +16,7 @@ public class AntBehavior : MonoBehaviour
     public bool hasCroissant = false;
 
     // How we will move
+    [SerializeField]
     private float moveSpeed = 2.0f;
     private float rotateSpeed = 720f * 2;
     private float wanderStrength = 0.1f;
@@ -27,6 +28,7 @@ public class AntBehavior : MonoBehaviour
     public float desireFoodStrength = 10f;
 
     // How we see the world
+    [SerializeField]
     private float antSight = 10.0f;
     [SerializeField]
     private LayerMask playerLayers;

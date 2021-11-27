@@ -20,9 +20,10 @@ public class ExplosiveBarrel : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<EnemyController>())
+        // Explode on contact with Enemy or Destructable rock (if fast enough)
+        if(collision.gameObject.GetComponent<EnemyController>() || collision.gameObject.GetComponent<DestructableRock>())
         {
-            if (rb.velocity.magnitude > 0.5f)
+            if (rb.velocity.magnitude > 0.1f)
             {
                 // Play explosion animation
                 if(!GetComponent<ParticleSystem>().isPlaying)
@@ -42,6 +43,11 @@ public class ExplosiveBarrel : MonoBehaviour
                     if (enemy.GetComponent<EnemyController>())
                     {
                         enemy.GetComponent<EnemyController>().TakeDamage(explosionDamage);
+                    }
+                    // Apply damage to Destructable Rocks
+                    if (enemy.GetComponent<DestructableRock>())
+                    {
+                        enemy.GetComponent<DestructableRock>().TakeDamage(explosionDamage);
                     }
                     // Apply force to Rigidbodies
                     if (enemy.GetComponent<Rigidbody2D>())

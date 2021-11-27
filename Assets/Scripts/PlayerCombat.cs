@@ -59,6 +59,11 @@ public class PlayerCombat : MonoBehaviour
                 Vector2 directionToForce = (enemy.transform.position - transform.position).normalized;
                 enemyRb.AddForce(directionToForce * attackForce, ForceMode2D.Impulse);
             }
+            // Apply damage to Destructable Rocks
+            if (enemy.GetComponent<DestructableRock>())
+            {
+                enemy.GetComponent<DestructableRock>().TakeDamage(attackDamage);
+            }
         }
         attackTimer = timeBetweenAttacks;
     }

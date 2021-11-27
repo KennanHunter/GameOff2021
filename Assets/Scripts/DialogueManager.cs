@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour
     {
         if(shouldTimeFreeze)
         {
-            Time.timeScale = 0.5f;
+            Time.timeScale = 0.25f;
         }
 
         isDone = false;

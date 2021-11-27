@@ -10,7 +10,7 @@ public class DestructableRock : MonoBehaviour
     public void TakeDamage(float damage)
     {
         m_health -= damage;
-        Debug.Log(gameObject.name + " health = " + m_health);
+        //Debug.Log(gameObject.name + " health = " + m_health);
         if (m_health <= 0)
         {
             Destroy(gameObject);

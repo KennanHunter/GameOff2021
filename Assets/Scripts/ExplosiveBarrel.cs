@@ -30,7 +30,7 @@ public class ExplosiveBarrel : MonoBehaviour
                 {
                     gameObject.GetComponent<ParticleSystem>().Play();
                     
-                    Debug.Log("Playing animation");
+                    //Debug.Log("Playing animation");
                 }
 
                 // Detect enemies in range that are in the "Enemy" Layer

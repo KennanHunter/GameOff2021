@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
             if (externalForceTimer <= 0)
             {
                 inExternalForce = false;
-                Debug.Log("Reset inExternalForce to false");
+                //Debug.Log("Reset inExternalForce to false");
             }
             else
             {

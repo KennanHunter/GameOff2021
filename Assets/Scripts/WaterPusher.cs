@@ -13,7 +13,7 @@ public class WaterPusher : MonoBehaviour
         if(collision.gameObject.GetComponent<PlayerController>())
         {
             collision.gameObject.GetComponent<PlayerController>().setInExternalForce(true);
-            Debug.Log("Player in stream");
+            //Debug.Log("Player in stream");
         }
     }
 

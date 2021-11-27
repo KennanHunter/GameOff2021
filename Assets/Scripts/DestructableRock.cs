@@ -13,6 +13,11 @@ public class DestructableRock : MonoBehaviour
         //Debug.Log(gameObject.name + " health = " + m_health);
         if (m_health <= 0)
         {
+            if (GetComponent<AudioSource>())
+            {
+                GetComponent<AudioSource>().Play();
+            }
+
             Destroy(gameObject);
         }
     }

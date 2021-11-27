@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         }
 
         health -= damage;
-        Debug.Log(gameObject.name + " health = " + health);
+        //Debug.Log(gameObject.name + " health = " + health);
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
     public void HealDamage(float recoverHealth)
     {
         health += recoverHealth;
-        Debug.Log(gameObject.name + " Gained health = " + health);
+        //Debug.Log(gameObject.name + " Gained health = " + health);
         if (health > maxHealth)
         {
             health = maxHealth;

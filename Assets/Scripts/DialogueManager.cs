@@ -14,6 +14,8 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
 
     private bool isDone = true;
+    [SerializeField]
+    public bool shouldTimeFreeze = false;
 
     // Use this for initialization
     void Start()
@@ -30,6 +32,11 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(Dialogue dialogue)
     {
+        if(shouldTimeFreeze)
+        {
+            Time.timeScale = 0.5f;
+        }
+
         isDone = false;
         animator.SetBool("IsOpen", true);
 
@@ -74,6 +81,11 @@ public class DialogueManager : MonoBehaviour
     {
         animator.SetBool("IsOpen", false);
         isDone = true;
+
+        if (shouldTimeFreeze)
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     public bool getIsDone()

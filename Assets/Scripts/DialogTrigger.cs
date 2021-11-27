@@ -13,9 +13,14 @@ public class DialogTrigger : MonoBehaviour
     [SerializeField]
     private GameObject canvas;
 
+    [SerializeField]
+    private bool triggerOnceOnly = false;
+    private bool didTriggered = false;
+
     private void Start()
     {
         canvas.SetActive(false);
+        didTriggered = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +31,7 @@ public class DialogTrigger : MonoBehaviour
             {
                 canvas.SetActive(true);
                 dialogueManager.StartDialogue(dialogue);
+                didTriggered = true;
             }
         }
     }
@@ -35,6 +41,10 @@ public class DialogTrigger : MonoBehaviour
         if(dialogueManager.getIsDone())
         {
             canvas.SetActive(false);
+        }
+        if(triggerOnceOnly && didTriggered && dialogueManager.getIsDone())
+        {
+            Destroy(gameObject);
         }
     }
 }

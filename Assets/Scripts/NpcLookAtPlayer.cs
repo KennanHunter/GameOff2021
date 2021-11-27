@@ -7,6 +7,9 @@ public class NpcLookAtPlayer : MonoBehaviour
     private Transform target;
     private float rotateSpeed = 720.0f;
 
+    [SerializeField]
+    private bool doLookAtPlayer = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +20,13 @@ public class NpcLookAtPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 towardsPlayer = target.position - transform.position;
-        Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, towardsPlayer);
-        transform.rotation =
-                Quaternion.RotateTowards(gameObject.transform.rotation,
-                toRotation, rotateSpeed * Time.deltaTime);
+        if(doLookAtPlayer)
+        {
+            Vector2 towardsPlayer = target.position - transform.position;
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, towardsPlayer);
+            transform.rotation =
+                    Quaternion.RotateTowards(gameObject.transform.rotation,
+                    toRotation, rotateSpeed * Time.deltaTime);
+        }
     }
 }

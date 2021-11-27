@@ -550,7 +550,7 @@ Transform:
   - {fileID: 1410339839}
   - {fileID: 103257546}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &396156367
 GameObject:
@@ -950,7 +950,7 @@ Transform:
   - {fileID: 286590298}
   - {fileID: 1758564049}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &552936028
 GameObject:
@@ -94979,7 +94979,7 @@ Transform:
   m_Children:
   - {fileID: 1912820636}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &835123936
 PrefabInstance:
@@ -95200,7 +95200,7 @@ Transform:
   m_Children:
   - {fileID: 1453884252}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1184338916
 PrefabInstance:
@@ -95677,8 +95677,69 @@ Transform:
   - {fileID: 622390058}
   - {fileID: 2147340748}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1725333119
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2283150324226856600, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_Name
+      value: LevelChangeLadder
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.060477
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 97.99385
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468836551818187703, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: nextLevelName
+      value: BossArena
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
 --- !u!1001 &1739717158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95779,7 +95840,7 @@ Transform:
   - {fileID: 1969137251}
   - {fileID: 151032879}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1776210726
 PrefabInstance:

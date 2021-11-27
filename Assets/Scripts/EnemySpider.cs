@@ -9,8 +9,21 @@ public class EnemySpider : MonoBehaviour
     private Vector3 targetDirection;
 
     [SerializeField]
-    public float timeBetweenAttacks = 8.0f;
+    public float timeBetweenWebs = 0.25f;
+    public float timeBetweenAttacks = 1f;
+    private float webTimer = 0f;
     private float attackTimer = 0f;
+
+    [SerializeField]
+    public Transform attackPoint;
+    [SerializeField]
+    public float attackRange = 1f;
+    [SerializeField]
+    public float attackForce = 2.0f;
+    [SerializeField]
+    public float attackDamage = 15.0f;
+    [SerializeField]
+    public LayerMask playerLayers;
 
     [SerializeField]
     private GameObject ropeObject;
@@ -38,7 +51,7 @@ public class EnemySpider : MonoBehaviour
 
     void ThrowWeb()
     {
-        if (attackTimer > 0)
+        if (webTimer > 0)
         {
             return;
         }
@@ -48,7 +61,7 @@ public class EnemySpider : MonoBehaviour
         }
         
         // Reset Attack Timer
-        attackTimer = timeBetweenAttacks;
+        webTimer = timeBetweenWebs;
 
 
         // Spawn web string at spider
@@ -92,6 +105,41 @@ public class EnemySpider : MonoBehaviour
         //webRopeRopeObject.hook.transform.position = gameObject.transform.position;
     }
 
+    void Attack()
+    {
+        if(attackTimer > 0)
+        {
+            return;
+        }
+
+        if(gameObject.GetComponent<ParticleSystem>())
+        {
+            // Play attack animation
+            gameObject.GetComponent<ParticleSystem>().Play();
+        }
+
+        // Detect enemies in range that are in the "Enemy" Layer
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
+
+        // Apply damage to enemies
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            // Apply damage to Player Controllers
+            if (enemy.GetComponent<PlayerController>())
+            {
+                enemy.GetComponent<PlayerController>().TakeDamage(attackDamage);
+            }
+            // Apply force to Rigidbodies
+            if (enemy.GetComponent<Rigidbody2D>())
+            {
+                Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+                enemyRb.AddForce(transform.up * attackForce, ForceMode2D.Impulse);
+            }
+
+        }
+        attackTimer = timeBetweenAttacks;
+    }
+
     public void OnDeath()
     {
         foreach (GameObject rope in ropeArray)
@@ -118,6 +166,20 @@ public class EnemySpider : MonoBehaviour
             ThrowWeb();
         }
 
+        if(targetDistance < 3)
+        {
+            Attack();
+        }
+
+        if (webTimer > 0)
+        {
+            webTimer -= Time.deltaTime;  // Decrement webTimer
+        }
+        else
+        {
+            webTimer = 0;
+        }
+
         if (attackTimer > 0)
         {
             attackTimer -= Time.deltaTime;  // Decrement attackTimer
@@ -128,7 +190,7 @@ public class EnemySpider : MonoBehaviour
         }
 
         // Keep the webRope hooks attached to Spider
-        foreach(GameObject rope in ropeArray)
+        foreach (GameObject rope in ropeArray)
         {
             if (rope != null)
             {

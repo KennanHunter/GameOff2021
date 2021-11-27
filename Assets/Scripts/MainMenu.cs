@@ -8,11 +8,11 @@ public class MainMenu : MonoBehaviour
     public GameObject MainMenuUI;
 
     [SerializeField]
-    private string mainLevelName;
+    private string startLevelName;
 
     public void Play()
     {
-        SceneManager.LoadScene(mainLevelName);
+        SceneManager.LoadScene(startLevelName);
     }
     public void Credits()
     {

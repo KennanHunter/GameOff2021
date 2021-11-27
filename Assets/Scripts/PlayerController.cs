@@ -22,11 +22,16 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     private float dashTimer = 0f;
-    private float dashCooldown = 3.0f;
+    private const float dashCooldown = 3.0f;
 
     private float dashInvincibleTimer = 0f;
-    private float dashInvincibleCooldown = 0.5f;
+    private const float dashInvincibleCooldown = 0.5f;
     private bool invincible = false;
+
+    // These are used for when the player is being forced around by others
+    private bool inExternalForce = false;
+    private float externalForceTimer = 0f;
+    private const float externalForceTimerCooldown = 0.25f;
 
     //private Color colorLowHealth = new Color(255, 51, 51, 1);
     //private Color colorMedHealth = new Color(255, 102, 102, 1);
@@ -38,6 +43,12 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
     }
 
+    public void setInExternalForce(bool isForced)
+    {
+        inExternalForce = isForced;
+        externalForceTimer = externalForceTimerCooldown;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>().normalized;
@@ -45,13 +56,9 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if(movementInput.magnitude < 1)
+        if(rb.velocity.magnitude < playerSpeed && !inExternalForce)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y) * 0.5f;
-        }
-
-        if(rb.velocity.magnitude < playerSpeed)
-        {
+            //rb.AddForce(new Vector2(movementInput.x * playerSpeed, movementInput.y * playerSpeed), ForceMode2D.Force);
             rb.velocity = new Vector2(movementInput.x * playerSpeed, movementInput.y * playerSpeed);
         }
         else
@@ -146,6 +153,20 @@ public class PlayerController : MonoBehaviour
         {
             dashInvincibleTimer -= Time.deltaTime;
             invincible = true;
+        }
+
+        if(inExternalForce)
+        {
+            if (externalForceTimer <= 0)
+            {
+                inExternalForce = false;
+                Debug.Log("Reset inExternalForce to false");
+            }
+            else
+            {
+                externalForceTimer -= Time.deltaTime;
+                // Don't need to set inExternalForce, anything that forces us will do that
+            }
         }
 
         // Physics Calculations

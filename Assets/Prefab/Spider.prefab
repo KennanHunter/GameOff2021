@@ -183,7 +183,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff48d6e42a5f53499f425077d438a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAttacks: 1
+  timeBetweenWebs: 0.25
+  timeBetweenAttacks: 1.5
+  attackPoint: {fileID: 6415191473698594340}
+  attackRange: 1
+  attackForce: 10
+  attackDamage: 10
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 64
   ropeObject: {fileID: 4189854400658354042, guid: 97ffc9a8630e12e46ac88c039c5a8bb2, type: 3}
   maxWebStrings: 8
 --- !u!1 &6415191473698594341
@@ -210,7 +218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6415191473698594341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6415191473405140323}

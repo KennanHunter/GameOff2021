@@ -15,7 +15,7 @@ public class WaterStreamEnd : MonoBehaviour
         if(otherEnd != null)
         {
             Vector2 distance = otherEnd.transform.position - transform.position;
-            Debug.Log("Water Stream Length: " + distance.magnitude);
+            //Debug.Log("Water Stream Length: " + distance.magnitude);
             for (int i = 0; i < distance.magnitude; i++)
             {
                 Vector3 relativeSpawn =

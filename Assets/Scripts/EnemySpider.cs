@@ -13,6 +13,8 @@ public class EnemySpider : MonoBehaviour
     public float timeBetweenAttacks = 1f;
     private float webTimer = 0f;
     private float attackTimer = 0f;
+    [SerializeField]
+    private float throwWebDistance = 5f;
 
     [SerializeField]
     public Transform attackPoint;
@@ -161,7 +163,7 @@ public class EnemySpider : MonoBehaviour
         targetDistance = Vector3.Distance(target.transform.position, gameObject.transform.position);
         targetDirection = (target.transform.position - gameObject.transform.position).normalized;
 
-        if (targetDistance < 5 )
+        if (targetDistance < throwWebDistance)
         {
             ThrowWeb();
         }

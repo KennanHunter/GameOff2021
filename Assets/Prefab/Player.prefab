@@ -141,6 +141,9 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   animator: {fileID: 4983443039683806831}
+  colorLowHealth: {r: 0.8584906, g: 0.14983091, b: 0.14983091, a: 1}
+  colorMedHealth: {r: 0.8018868, g: 0.4349858, b: 0.4349858, a: 1}
+  colorHighHealth: {r: 0.7735849, g: 0.6823603, b: 0.6823603, a: 1}
 --- !u!114 &3579863106871799577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +416,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 7
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1110,7 +1113,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2

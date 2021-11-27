@@ -33,9 +33,12 @@ public class PlayerController : MonoBehaviour
     private float externalForceTimer = 0f;
     private const float externalForceTimerCooldown = 0.25f;
 
-    //private Color colorLowHealth = new Color(255, 51, 51, 1);
-    //private Color colorMedHealth = new Color(255, 102, 102, 1);
-    //private Color colorHighHealth = new Color(255, 204, 204, 1);
+    [SerializeField]
+    private Color colorLowHealth = Color.white;
+    [SerializeField]
+    private Color colorMedHealth = Color.white;
+    [SerializeField]
+    private Color colorHighHealth = Color.white;
 
     private void Start()
     {
@@ -114,7 +117,8 @@ public class PlayerController : MonoBehaviour
         // Update color of Player based on remaining health
         if (health <= maxHealth * 0.75)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+            //gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+            gameObject.GetComponent<SpriteRenderer>().color = colorHighHealth;
         }
         else
         {
@@ -122,11 +126,11 @@ public class PlayerController : MonoBehaviour
         }
         if (health <= maxHealth * 0.50)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
+            gameObject.GetComponent<SpriteRenderer>().color = colorMedHealth;
         }
         if (health <= maxHealth * 0.25)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            gameObject.GetComponent<SpriteRenderer>().color = colorLowHealth;
         }
 
         animator.SetFloat("Speed", Mathf.Abs(rb.velocity.magnitude));

@@ -19,6 +19,13 @@ public class EnemyController : MonoBehaviour
 
     private Transform target;
 
+    [SerializeField]
+    private Color colorLowHealth = Color.white;
+    [SerializeField]
+    private Color colorMedHealth = Color.white;
+    [SerializeField]
+    private Color colorHighHealth = Color.white;
+
 
 
     private void Start()
@@ -46,17 +53,22 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health <= maxHealth * 0.75)
+        // Update color of Enemy based on remaining health
+        if (health <= maxHealth * 0.75)
         {
-            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = colorHighHealth;
+        }
+        else
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
         if (health <= maxHealth * 0.50)
         {
-            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.gray;
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = colorMedHealth;
         }
         if (health <= maxHealth * 0.25)
         {
-            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = colorLowHealth;
         }
     }
 

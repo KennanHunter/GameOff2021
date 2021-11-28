@@ -21,7 +21,7 @@ public class ItemSpawner : MonoBehaviour
             {
                 spawnTimer = spawnTimerCooldown;
                 int i = (int)(Random.value * spawnItemList.Count);
-                Debug.Log("Spawn Item List Index: " + i);
+                //Debug.Log("Spawn Item List Index: " + i);
                 Instantiate(spawnItemList[i], gameObject.transform.position, Quaternion.identity);
             }
             else

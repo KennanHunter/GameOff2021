@@ -278,6 +278,10 @@ PrefabInstance:
       propertyPath: interpolationFramesCount
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4215278594950358787, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
+      propertyPath: cameraOrthographicEndSize
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6919464342068491243, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -2534,6 +2538,10 @@ PrefabInstance:
     - target: {fileID: 4215278594950358787, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: interpolationFramesCount
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215278594950358787, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
+      propertyPath: cameraOrthographicEndSize
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6919464342068491243, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: m_RootOrder

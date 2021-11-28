@@ -26,6 +26,13 @@ public class Croissant : MonoBehaviour
                 return;
             }
             collision.collider.GetComponent<PlayerController>().HealDamage(healthToRestore);
+
+            if (GetComponent<AudioSource>())
+            {
+                //Debug.Log("Playing audio: " + GetComponent<AudioSource>().clip.name);
+                GetComponent<AudioSource>().Play();
+            }
+
             Destroy(gameObject);
         }
     }

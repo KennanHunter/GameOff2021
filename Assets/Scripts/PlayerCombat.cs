@@ -33,8 +33,13 @@ public class PlayerCombat : MonoBehaviour
 
         // Play attack animation
         gameObject.GetComponent<ParticleSystem>().Play();
-        
-       
+
+        if (GetComponent<AudioSource>())
+        {
+            GetComponent<AudioSource>().Play();
+        }
+
+
 
         // Detect enemies in range that are in the "Enemy" Layer
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);

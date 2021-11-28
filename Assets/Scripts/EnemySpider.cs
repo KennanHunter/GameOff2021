@@ -36,6 +36,14 @@ public class EnemySpider : MonoBehaviour
     public int maxWebStrings = 6;
     private int numWebStrings = 0;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip spiderAttack;
+    [SerializeField]
+    private AudioClip spiderDeath;
+    [SerializeField]
+    private AudioClip throwWebSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +57,8 @@ public class EnemySpider : MonoBehaviour
         // Rope array of size maxWebStrings
         ropeArray = new GameObject[maxWebStrings];
         poisonBallArray = new GameObject[maxWebStrings];
+
+        AudioSource audio = GetComponent<AudioSource>();
     }
 
     void ThrowWeb()
@@ -65,6 +75,11 @@ public class EnemySpider : MonoBehaviour
         // Reset Attack Timer
         webTimer = timeBetweenWebs;
 
+        if (audioSource)
+        {
+            audioSource.clip = throwWebSound;
+            audioSource.Play();
+        }
 
         // Spawn web string at spider
         GameObject webRope = Instantiate(ropeObject, new Vector3(transform.position.x, 
@@ -74,14 +89,14 @@ public class EnemySpider : MonoBehaviour
         ropeArray[numWebStrings] = webRope;
         ++numWebStrings;
 
-        Debug.Log("Created rope with children: " + webRope.transform.childCount);
+        //Debug.Log("Created rope with children: " + webRope.transform.childCount);
         // Store poison ball in an array
         for(int i = 0; i < webRope.transform.childCount; ++i)
         {
             if(webRope.transform.GetChild(i).GetComponent<SpiderPoisonBall>())
             {
                 poisonBallArray[numWebStrings] = webRope.transform.GetChild(i).gameObject;
-                Debug.Log("Found poisonball: " + poisonBallArray[numWebStrings]);
+                //Debug.Log("Found poisonball: " + poisonBallArray[numWebStrings]);
             }
         }
 
@@ -120,6 +135,12 @@ public class EnemySpider : MonoBehaviour
             gameObject.GetComponent<ParticleSystem>().Play();
         }
 
+        if (audioSource)
+        {
+            audioSource.clip = spiderAttack;
+            audioSource.Play();
+        }
+
         // Detect enemies in range that are in the "Enemy" Layer
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
 
@@ -151,9 +172,15 @@ public class EnemySpider : MonoBehaviour
                 if(rope.transform.GetChild(i).GetComponent<SpiderPoisonBall>())
                 {
                     Destroy(rope.transform.GetChild(i).gameObject);
-                    Debug.Log("Trying to destroy " + rope.transform.GetChild(i).gameObject);
+                    //Debug.Log("Trying to destroy " + rope.transform.GetChild(i).gameObject);
                 }
             }
+        }
+
+        if (audioSource)
+        {
+            audioSource.clip = spiderDeath;
+            audioSource.Play();
         }
     }
 

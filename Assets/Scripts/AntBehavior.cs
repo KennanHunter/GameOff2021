@@ -168,6 +168,11 @@ public class AntBehavior : MonoBehaviour
             collision.collider.GetComponent<Transform>().position = gameObject.transform.position;
             myCroissant.isCarried = true;
             hasCroissant = true;
+
+            if(GetComponent<AudioSource>())
+            {
+                GetComponent<AudioSource>().Play();
+            }
         }
     }
 

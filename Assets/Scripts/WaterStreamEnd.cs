@@ -17,7 +17,7 @@ public class WaterStreamEnd : MonoBehaviour
             Vector3 distance = otherEnd.transform.position - transform.position;
             Vector3 forwards = transform.up;
             float angleToOtherEnd = Vector3.SignedAngle(distance.normalized, forwards, Vector3.right);
-            Debug.Log("Water stream angle: " + angleToOtherEnd);
+            //Debug.Log("Water stream angle: " + angleToOtherEnd);
 
             for (int i = 0; i < distance.magnitude; i++)
             {

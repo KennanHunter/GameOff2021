@@ -47,5 +47,6 @@ public class LoseScreen : MonoBehaviour
     {
         SceneManager.LoadScene("AnthillLevel");
     }
+
    
 }

@@ -9,7 +9,7 @@ public class OptionsMenu : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("gameVolume"))
         {
-            PlayerPrefs.SetFloat("gameVolume", 1);
+            PlayerPrefs.SetFloat("gameVolume", 0.25f);
             Load();
         }
         else

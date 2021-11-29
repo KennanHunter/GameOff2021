@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Color colorHighHealth = Color.white;
 
-
+    private bool isAlive = true;
 
     private void Start()
     {
@@ -40,19 +40,29 @@ public class EnemyController : MonoBehaviour
     {
         health -= damage;
         //Debug.Log(gameObject.name + " health = " + health);
-        if(health <= 0)
+        if(health <= 0 && isAlive)
         {
             if(GetComponent<EnemySpider>())
             {
                 GetComponent<EnemySpider>().OnDeath();
+                GetComponent<EnemySpider>().enabled = false;
             }
-            Destroy(gameObject);
+            if(GetComponent<Animation>())
+            {
+                GetComponent<Animation>().Play("OnDeath");
+            }
+            isAlive = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!isAlive)
+        {
+            return;
+        }
+
         // Update color of Enemy based on remaining health
         if (health <= maxHealth * 0.75)
         {
@@ -74,6 +84,11 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         // Find and move towards Target
         Vector2 moveVector = (target.position - transform.position);
         if(moveVector.magnitude <= sightDistance)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private float rotateSpeed = 720.0f;
     [SerializeField]
     private float dashForce = 10.0f;
+    [SerializeField]
+    public AudioClip DeathSound;
 
     public float maxHealth = 100f;
     public float health = 100f;
@@ -20,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movementInput = Vector2.zero;
     public Animator animator;
+    public GameObject LoseScreenUI;
 
     private float dashTimer = 0f;
     private const float dashCooldown = 3.0f;
@@ -44,6 +48,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        Time.timeScale = 1f;
+        LoseScreenUI.SetActive(false);
     }
 
     public void setInExternalForce(bool isForced)
@@ -93,10 +99,18 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(gameObject.name + " health = " + health);
         if (health <= 0)
         {
-            Destroy(gameObject);
+            OnDeath();
         }
     }
+    
+    public void OnDeath()
+    {
+        LoseScreenUI.SetActive(true);
+        Time.timeScale = 0f;
+        GetComponent<AudioSource>().clip = DeathSound;
+        GetComponent<AudioSource>().Play();
 
+    }
     public void HealDamage(float recoverHealth)
     {
         health += recoverHealth;

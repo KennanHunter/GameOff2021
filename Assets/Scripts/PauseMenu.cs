@@ -19,8 +19,9 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && GetComponentInParent<PlayerController>().health > 0)
         {
+           
             if (GameIsPaused)
             {
                 Resume();
@@ -30,7 +31,11 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-    }
+        if (Input.GetKeyDown(KeyCode.Escape) && GetComponentInParent<PlayerController>().health <= 0)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+      }
     public void Resume()
     {
         PauseMenuUI.SetActive(false);
@@ -51,5 +56,9 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene("AnthillLevel");
     }
 }

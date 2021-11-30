@@ -133,6 +133,7 @@ public class EnemySpider : MonoBehaviour
         {
             // Play attack animation
             gameObject.GetComponent<ParticleSystem>().Play();
+            
         }
 
         if (audioSource)
@@ -151,6 +152,7 @@ public class EnemySpider : MonoBehaviour
             if (enemy.GetComponent<PlayerController>())
             {
                 enemy.GetComponent<PlayerController>().TakeDamage(attackDamage);
+                GetComponent<Animator>().Play("Spider_bite", -1, 0f);
             }
             // Apply force to Rigidbodies
             if (enemy.GetComponent<Rigidbody2D>())

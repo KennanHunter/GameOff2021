@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
             {
                 GetComponent<EnemySpider>().OnDeath();
             }
-            Destroy(gameObject);
+           // Destroy(gameObject);~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~UNCOMMENT
         }
     }
 

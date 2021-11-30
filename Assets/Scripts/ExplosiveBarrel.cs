@@ -29,8 +29,9 @@ public class ExplosiveBarrel : MonoBehaviour
                 if(!GetComponent<ParticleSystem>().isPlaying)
                 {
                     gameObject.GetComponent<ParticleSystem>().Play();
-                    
+
                     //Debug.Log("Playing animation");
+                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 }
 
                 // Detect enemies in range that are in the "Enemy" Layer
@@ -57,8 +58,8 @@ public class ExplosiveBarrel : MonoBehaviour
                         enemyRb.AddForce(directionToForce * explosionForce, ForceMode2D.Impulse);
                     }
                 }
-
-                Destroy(gameObject);
+              
+                //Destroy(gameObject);
             }
         }
     }

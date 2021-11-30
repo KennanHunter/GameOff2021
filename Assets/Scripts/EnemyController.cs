@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Color colorHighHealth = Color.white;
 
-    private bool isAlive = true;
+    public bool isAlive = true;
 
     private void Start()
     {

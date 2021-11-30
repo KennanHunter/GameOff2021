@@ -130,10 +130,10 @@ TextureImporter:
       name: spider-death-Sheet_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 4427
-        width: 335
-        height: 324
+        x: 0
+        y: 4400
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,10 +151,10 @@ TextureImporter:
       name: spider-death-Sheet_1
       rect:
         serializedVersion: 2
-        x: 49
-        y: 4029
-        width: 314
-        height: 314
+        x: 0
+        y: 4000
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +172,10 @@ TextureImporter:
       name: spider-death-Sheet_2
       rect:
         serializedVersion: 2
-        x: 58
-        y: 3628
-        width: 293
-        height: 314
+        x: 0
+        y: 3600
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +193,10 @@ TextureImporter:
       name: spider-death-Sheet_3
       rect:
         serializedVersion: 2
-        x: 68
-        y: 3227
-        width: 274
-        height: 314
+        x: 0
+        y: 3200
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,10 +214,10 @@ TextureImporter:
       name: spider-death-Sheet_4
       rect:
         serializedVersion: 2
-        x: 68
-        y: 2829
-        width: 274
-        height: 314
+        x: 0
+        y: 2800
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,10 +235,10 @@ TextureImporter:
       name: spider-death-Sheet_5
       rect:
         serializedVersion: 2
-        x: 68
-        y: 2438
-        width: 274
-        height: 314
+        x: 0
+        y: 2400
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,10 +256,10 @@ TextureImporter:
       name: spider-death-Sheet_6
       rect:
         serializedVersion: 2
-        x: 68
-        y: 2039
-        width: 274
-        height: 312
+        x: 0
+        y: 2000
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,10 +277,10 @@ TextureImporter:
       name: spider-death-Sheet_7
       rect:
         serializedVersion: 2
-        x: 68
-        y: 1638
-        width: 274
-        height: 314
+        x: 0
+        y: 1600
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,10 +298,10 @@ TextureImporter:
       name: spider-death-Sheet_8
       rect:
         serializedVersion: 2
-        x: 68
-        y: 1238
-        width: 274
-        height: 314
+        x: 0
+        y: 1200
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,10 +319,10 @@ TextureImporter:
       name: spider-death-Sheet_9
       rect:
         serializedVersion: 2
-        x: 68
-        y: 839
-        width: 274
-        height: 312
+        x: 0
+        y: 800
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -340,10 +340,10 @@ TextureImporter:
       name: spider-death-Sheet_10
       rect:
         serializedVersion: 2
-        x: 68
-        y: 429
-        width: 274
-        height: 314
+        x: 0
+        y: 400
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -361,10 +361,10 @@ TextureImporter:
       name: spider-death-Sheet_11
       rect:
         serializedVersion: 2
-        x: 68
-        y: 28
-        width: 274
-        height: 314
+        x: 0
+        y: 0
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

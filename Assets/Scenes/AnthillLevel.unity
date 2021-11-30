@@ -944,6 +944,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1956989194}
     m_Modifications:
     - target: {fileID: 8559516667752986217, guid: 732f9ff0dae04d44ebbed1fd34e737e1, type: 3}
+      propertyPath: ExplosionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: dd9ba673d69b75f4e87da00e3c565b2e, type: 3}
+    - target: {fileID: 8559516667752986217, guid: 732f9ff0dae04d44ebbed1fd34e737e1, type: 3}
       propertyPath: explosionRange
       value: 2
       objectReference: {fileID: 0}
@@ -11284,6 +11288,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1956989194}
     m_Modifications:
+    - target: {fileID: 8559516667752986217, guid: 732f9ff0dae04d44ebbed1fd34e737e1, type: 3}
+      propertyPath: ExplosionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: dd9ba673d69b75f4e87da00e3c565b2e, type: 3}
     - target: {fileID: 8559516667752986217, guid: 732f9ff0dae04d44ebbed1fd34e737e1, type: 3}
       propertyPath: explosionRange
       value: 2

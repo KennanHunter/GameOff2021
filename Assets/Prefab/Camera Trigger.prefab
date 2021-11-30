@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerVirtualCamera: {fileID: 0}
+  cameraOrthographicStartSize: 5
+  cameraOrthographicEndSize: 10
+  interpolationFramesCount: 90
 --- !u!61 &5117635639034182577
 BoxCollider2D:
   m_ObjectHideFlags: 0

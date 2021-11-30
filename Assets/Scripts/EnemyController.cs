@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -26,7 +24,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Color colorHighHealth = Color.white;
 
-
+    public bool isAlive = true;
 
     private void Start()
     {
@@ -40,19 +38,43 @@ public class EnemyController : MonoBehaviour
     {
         health -= damage;
         //Debug.Log(gameObject.name + " health = " + health);
-        if(health <= 0)
+        if(health <= 0 && isAlive)
         {
             if(GetComponent<EnemySpider>())
             {
                 GetComponent<EnemySpider>().OnDeath();
+                GetComponent<EnemySpider>().enabled = false;
             }
-            Destroy(gameObject);
+            if(GetComponent<Animator>())
+            {
+                //GetComponent<Animator>().Stop();
+                GetComponent<Animator>().Play("OnDeath", -1, 0f);
+            }
+            if(GetComponent<Collider2D>())
+            {
+                GetComponent<Collider2D>().enabled = false;
+            }
+            if (GetComponent<Rigidbody2D>())
+            {
+                GetComponent<Rigidbody2D>().Sleep();
+            }
+            if (GetComponent<SpriteRenderer>())
+            {
+                GetComponent<SpriteRenderer>().sortingLayerName = "Enemy";
+                GetComponent<SpriteRenderer>().sortingOrder = 0;
+            }
+            isAlive = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!isAlive)
+        {
+            return;
+        }
+
         // Update color of Enemy based on remaining health
         if (health <= maxHealth * 0.75)
         {
@@ -74,6 +96,11 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         // Find and move towards Target
         Vector2 moveVector = (target.position - transform.position);
         if(moveVector.magnitude <= sightDistance)

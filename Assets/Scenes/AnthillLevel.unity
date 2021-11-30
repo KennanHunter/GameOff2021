@@ -268,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1284922964750309297, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: m_Color.a
-      value: 0.039215688
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4215278594950358787, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: playerVirtualCamera
@@ -408,7 +408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1284922964750309297, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: m_Color.a
-      value: 0.039215688
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4215278594950358787, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: cameraDistance
@@ -2939,7 +2939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1284922964750309297, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: m_Color.a
-      value: 0.039215688
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4215278594950358787, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: playerVirtualCamera
@@ -4099,6 +4099,10 @@ PrefabInstance:
     - target: {fileID: 6327611735004524750, guid: e5512a240725a7345b91b20ae74e5502, type: 3}
       propertyPath: m_Name
       value: DestructableRock
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921349904682500743, guid: e5512a240725a7345b91b20ae74e5502, type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5512a240725a7345b91b20ae74e5502, type: 3}
@@ -12133,7 +12137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4492228129273674575, guid: 2f24ed90848219147b052be89fb48da9, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6415191473405140323, guid: 2f24ed90848219147b052be89fb48da9, type: 3}
       propertyPath: m_RootOrder
@@ -110693,7 +110697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1284922964750309297, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: m_Color.a
-      value: 0.039215688
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4215278594950358787, guid: 8a8a9cdc9c9bd2249b5d59a751ddf09b, type: 3}
       propertyPath: cameraDistance
@@ -110898,6 +110902,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2211276028216879692, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6650944
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211276028216879692, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97081196
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211276028216879692, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211276028216879692, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_SortingLayer
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211276028216879692, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211276028216879692, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1679376467
+      objectReference: {fileID: 0}
     - target: {fileID: 2283150324226856600, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
       propertyPath: m_Name
       value: LevelChangeLadder
@@ -110912,7 +110940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.1
+      value: 53.82
       objectReference: {fileID: 0}
     - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
       propertyPath: m_LocalPosition.z

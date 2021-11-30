@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -47,9 +45,23 @@ public class EnemyController : MonoBehaviour
                 GetComponent<EnemySpider>().OnDeath();
                 GetComponent<EnemySpider>().enabled = false;
             }
-            if(GetComponent<Animation>())
+            if(GetComponent<Animator>())
             {
-                GetComponent<Animation>().Play("OnDeath");
+                //GetComponent<Animator>().Stop();
+                GetComponent<Animator>().Play("OnDeath", -1, 0f);
+            }
+            if(GetComponent<Collider2D>())
+            {
+                GetComponent<Collider2D>().enabled = false;
+            }
+            if (GetComponent<Rigidbody2D>())
+            {
+                GetComponent<Rigidbody2D>().Sleep();
+            }
+            if (GetComponent<SpriteRenderer>())
+            {
+                GetComponent<SpriteRenderer>().sortingLayerName = "Enemy";
+                GetComponent<SpriteRenderer>().sortingOrder = 0;
             }
             isAlive = false;
         }

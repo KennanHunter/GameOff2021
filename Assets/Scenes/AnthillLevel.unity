@@ -3224,6 +3224,7 @@ MonoBehaviour:
   colorLowHealth: {r: 1, g: 1, b: 1, a: 1}
   colorMedHealth: {r: 1, g: 1, b: 1, a: 1}
   colorHighHealth: {r: 1, g: 1, b: 1, a: 1}
+  isAlive: 1
 --- !u!82 &944041788
 AudioSource:
   m_ObjectHideFlags: 0
@@ -111237,6 +111238,10 @@ PrefabInstance:
     - target: {fileID: 4928492630833313292, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468836551818187703, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}
+      propertyPath: nextLevelName
+      value: GardenDungeon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04f19ebdce6e4ae49896e836ea85f0aa, type: 3}

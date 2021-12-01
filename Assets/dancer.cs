@@ -39,7 +39,7 @@ public class dancer : MonoBehaviour
                     break;
             }
             animationTimer = animationChangeCooldown;
-            Debug.Log(i);
+            //Debug.Log(i);
         }
         else
         {

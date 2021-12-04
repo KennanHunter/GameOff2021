@@ -9,3 +9,5 @@
 Guarding the Garden has been developed for the Github Game Off Game Jam 2021
 
 https://travh98.itch.io/guarding-the-garden
+
+A short 2D Dungeon Crawler where a queen ant fights off an army of invading spiders. Developed by a small, diverse team of first time game developers.

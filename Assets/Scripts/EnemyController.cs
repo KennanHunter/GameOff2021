@@ -107,7 +107,10 @@ public class EnemyController : MonoBehaviour
         {
             moveVector = moveVector.normalized;
             //rb.AddForce(moveVector.normalized * moveSpeed * Time.deltaTime);
-            rb.velocity = new Vector2(moveVector.x * moveSpeed, moveVector.y * moveSpeed);
+            if(rb)
+            {
+                rb.velocity = new Vector2(moveVector.x * moveSpeed, moveVector.y * moveSpeed);
+            }
         }
         // faces direction of movement (by rotating sprite renderer child
         if(GetComponentInChildren<SpriteRenderer>())

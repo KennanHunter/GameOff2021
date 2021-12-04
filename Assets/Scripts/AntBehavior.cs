@@ -180,7 +180,7 @@ public class AntBehavior : MonoBehaviour
     {
         CalculateDesiredPosition();
         Move();
-        if((target.position - transform.position).magnitude > 1)
+        if((target.position - transform.position).magnitude > 0.25f)
         {
             Rotate();
         }

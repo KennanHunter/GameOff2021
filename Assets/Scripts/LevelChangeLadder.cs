@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelChangeLadder : MonoBehaviour
 {
     [SerializeField]
-    private string nextLevelName;
+    public string nextLevelName;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

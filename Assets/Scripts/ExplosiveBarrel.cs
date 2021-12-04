@@ -9,6 +9,8 @@ public class ExplosiveBarrel : MonoBehaviour
     public float explosionDamage = 30f;
     public float explosionRange = 5f;
     public float explosionForce = 5f;
+    [SerializeField]
+    public AudioClip ExplosionSound;
 
 
     private Rigidbody2D rb;
@@ -29,8 +31,13 @@ public class ExplosiveBarrel : MonoBehaviour
                 if(!GetComponent<ParticleSystem>().isPlaying)
                 {
                     gameObject.GetComponent<ParticleSystem>().Play();
-                    
+                    if (GetComponent<AudioSource>())
+                    {
+                        GetComponent<AudioSource>().Play();
+                    }
+
                     //Debug.Log("Playing animation");
+                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 }
 
                 // Detect enemies in range that are in the "Enemy" Layer
@@ -57,8 +64,8 @@ public class ExplosiveBarrel : MonoBehaviour
                         enemyRb.AddForce(directionToForce * explosionForce, ForceMode2D.Impulse);
                     }
                 }
-
-                Destroy(gameObject);
+              
+                //Destroy(gameObject);
             }
         }
     }

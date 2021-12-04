@@ -133,13 +133,10 @@ public class EnemySpider : MonoBehaviour
         {
             // Play attack animation
             gameObject.GetComponent<ParticleSystem>().Play();
+            
         }
 
-        if (audioSource)
-        {
-            audioSource.clip = spiderAttack;
-            audioSource.Play();
-        }
+        
 
         // Detect enemies in range that are in the "Enemy" Layer
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
@@ -151,6 +148,11 @@ public class EnemySpider : MonoBehaviour
             if (enemy.GetComponent<PlayerController>())
             {
                 enemy.GetComponent<PlayerController>().TakeDamage(attackDamage);
+                GetComponent<Animator>().Play("Spider_bite", -1, 0f);
+                if (GetComponent<AudioSource>())
+                {
+                    GetComponent<AudioSource>().Play();
+                }
             }
             // Apply force to Rigidbodies
             if (enemy.GetComponent<Rigidbody2D>())
